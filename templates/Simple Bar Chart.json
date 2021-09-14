@@ -1,0 +1,54 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "0.5.0.122",
+        "metaVersion": 1,
+        "provider": "vegaLite"
+      },
+      "information": {
+        "name": "Simple Bar Chart",
+        "description": "Basic bar chart.",
+        "author": "Daniel Marsh-Patrick",
+        "uuid": "65f4a0a0-4d0e-4198-9e3e-75ef031fed6a",
+        "generated": "2021-09-14T16:13:43.104Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "Date",
+          "description": "Uses a Categorical field on the Y-axis.",
+          "type": "dateTime",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "Measure",
+          "description": "Numerical value can be either an implicit calculation or a measure.",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      }
+    },
+    "data": {"name": "dataset"},
+    "mark": {
+      "type": "bar",
+      "tooltip": true
+    },
+    "encoding": {
+      "y": {
+        "field": "__0__",
+        "type": "nominal"
+      },
+      "x": {
+        "field": "__1__",
+        "type": "quantitative"
+      }
+    }
+  }
