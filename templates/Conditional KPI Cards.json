@@ -1,0 +1,181 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+        "deneb": {
+          "build": "0.5.0.122",
+          "metaVersion": 1,
+          "provider": "vegaLite"
+        },
+        "information": {
+          "name": "Conditional KPI Cards",
+          "description": "Conditional KPI Cards",
+          "author": "Kerry Kolosko",
+          "uuid": "12345678-4d0e-4198-9e3e-75ef031fed6a",
+          "generated": "2021-09-14T20:13:43.104Z"
+        },
+        "dataset": [
+          {
+            "key": "__0__",
+            "name": "Date",
+            "description": "Uses a Categorical field on the Y-axis.",
+            "type": "dateTime",
+            "kind": "column"
+          },
+          {
+            "key": "__1__",
+            "name": "Measure",
+            "description": "Numerical value can be either an implicit calculation or a measure.",
+            "type": "numeric",
+            "kind": "measure"
+          }
+        ]
+      },
+    "config": {
+        "autosize": {
+          "type": "fit",
+          "contains": "padding"
+        }
+      },
+    "data": {
+        "name": "dataset"
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "area"
+            },
+            "encoding": {
+                "color": {
+                    "value": "lightgray"
+                },
+                "x": {
+                    "field": "__0__",
+                    "type": "temporal",
+                    "axis": null
+                },
+                "y": {
+                    "field": "__1__",
+                    "type": "quantitative",
+                    "axis": null
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "line",
+                "point": {
+                    "filled": false,
+                    "fill": "white"
+                },
+                "tooltip": true
+            },
+            "encoding": {
+                "color": {
+                    "value": "gray"
+                },
+                "x": {
+                    "field": "Date",
+                    "type": "temporal"
+                },
+                "y": {
+                    "field": "Value",
+                    "type": "quantitative"
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "circle",
+                "tooltip": true
+            },
+            "encoding": {
+                "color": {
+                    "condition": {
+                        "test": "datum[‘Value’] < datum['Target']",
+                        "value": "red"
+                    },
+                    "value": "green"
+                },
+                "size": {
+                    "value": 30
+                },
+                "x": {
+                    "aggregate": "max",
+                    "field": "Date",
+                    "type": "temporal"
+                },
+                "y": {
+                    "aggregate": {
+                        "argmax": "Date"
+                    },
+                    "field": "Value",
+                    "type": "quantitative"
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "dx": 0,
+                "dy": -10,
+                "xOffset": 0,
+                "yOffset": -10,
+                "angle": 0,
+                "align": "right",
+                "baseline": "bottom",
+                "font": "sans-serif",
+                "fontSize": 20,
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+                "limit": 0
+            },
+            "encoding": {
+                "x": {
+                    "aggregate": "max",
+                    "field": "Date",
+                    "type": "temporal"
+                },
+                "y": {
+                    "aggregate": "max",
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "text": {
+                    "field": "Format Actual"
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "dx": 0,
+                "dy": -10,
+                "xOffset": 0,
+                "yOffset": -10,
+                "angle": 0,
+                "align": "right",
+                "baseline": "top",
+                "font": "sans-serif",
+                "fontSize": 14,
+                "fontStyle": "normal",
+                "fontWeight": "normal",
+                "limit": 0
+            },
+            "encoding": {
+                "x": {
+                    "aggregate": "max",
+                    "field": "Date",
+                    "type": "temporal"
+                },
+                "y": {
+                    "aggregate": "max",
+                    "field": "Value",
+                    "type": "quantitative"
+                },
+                "text": {
+                    "field": "Format Variance"
+                }
+            }
+        }
+    ]
+}
