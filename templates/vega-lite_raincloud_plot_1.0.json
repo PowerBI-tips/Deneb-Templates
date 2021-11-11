@@ -1,0 +1,157 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+        "deneb": {
+            "build": "0.6.0.150",
+            "metaVersion": 1,
+            "provider": "vegaLite"
+        },
+        "interactivity": {
+            "tooltip": true,
+            "contextMenu": true,
+            "selection": false,
+            "dataPointLimit": 50
+        },
+        "information": {
+            "name": "Raincloud Plot",
+            "description": "Facet a category and plot its distribution using a density curve and box plot. Also shows individual data points as a jitter strip plot. This uses precise scale domains and facet dimensions to place elements, so you may need to adapt accordingly for your data.",
+            "author": "Daniel Marsh-Patrick",
+            "uuid": "6888ed42-2f88-48ea-afec-bb949a8ec606",
+            "generated": "2021-10-29T03:03:02.022Z"
+        },
+        "dataset": [
+            {
+                "key": "__0__",
+                "name": "Category",
+                "description": "Value to group distribution data by.",
+                "type": "text",
+                "kind": "column"
+            },
+            {
+                "key": "__1__",
+                "name": "Granularity",
+                "description": "Column to produce sufficient granularity for sampling. Should be unique in order to prevent Power BI from aggregating.",
+                "type": "numeric",
+                "kind": "column"
+            },
+            {
+                "key": "__2__",
+                "name": "Measure",
+                "description": "Quantitative value over which to perform analysis.",
+                "type": "numeric",
+                "kind": "measure"
+            }
+        ]
+    },
+    "config": {
+        "padding": 0,
+        "view": { "stroke": "transparent" },
+        "facet": { "spacing": 2 },
+        "header": {
+            "title": null,
+            "labelAngle": 0,
+            "labelAnchor": "start",
+            "labelOrient": "top",
+            "labelPadding": -19,
+            "labelFontSize": 12,
+            "labelFontWeight": 500
+        },
+        "font": "Segoe UI",
+        "area": {
+            "color": "#eaeaea",
+            "interpolate": "cardinal",
+            "stroke": "#605E5C"
+        },
+        "point": {
+            "size": 3,
+            "opacity": 0.5,
+            "color": "#eaeaea",
+            "stroke": "#605E5C",
+            "strokeWidth": 0.25,
+            "filled": true
+        },
+        "axis": {
+            "domain": false,
+            "grid": false,
+            "labelFontSize": 12,
+            "ticks": false,
+            "tickCount": 5,
+            "titleFontSize": 12,
+            "titleFontWeight": 400,
+            "titleColor": "#605E5C"
+        },
+        "boxplot": {
+            "size": 6,
+            "outliers": false,
+            "box": {
+                "color": "#eaeaea",
+                "stroke": "#605E5C",
+                "strokeWidth": 1
+            },
+            "rule": { "stroke": "black" },
+            "median": { "color": "#605E5C" }
+        },
+        "axisY": { "disable": true },
+        "legend": { "title": null }
+    },
+    "data": { "name": "dataset" },
+    "facet": { "row": { "field": "__0__" } },
+    "transform": [
+        {
+            "calculate": "random()",
+            "as": "Jitter"
+        }
+    ],
+    "spec": {
+        "resolve": {
+            "scale": { "y": "independent" }
+        },
+        "height": 44,
+        "width": 355,
+        "layer": [
+            {
+                "transform": [{ "density": "__2__" }],
+                "mark": { "type": "area" },
+                "encoding": {
+                    "x": {
+                        "field": "value",
+                        "type": "quantitative"
+                    },
+                    "y": {
+                        "field": "density",
+                        "type": "quantitative",
+                        "scale": { "range": [22, 0] }
+                    }
+                }
+            },
+            {
+                "mark": {
+                    "type": "boxplot"
+                }
+            },
+            {
+                "mark": {
+                    "type": "point",
+                    "tooltip": true
+                },
+                "encoding": {
+                    "y": {
+                        "field": "Jitter",
+                        "type": "quantitative",
+                        "scale": { "range": [44, 28] }
+                    }
+                }
+            }
+        ],
+        "encoding": {
+            "x": {
+                "field": "__2__",
+                "type": "quantitative",
+                "axis": {
+                    "title": "",
+                    "labelExpr": "datum.label + (datum.value === 20 ? ' °C' : '')"
+                }
+            }
+        }
+    }
+}

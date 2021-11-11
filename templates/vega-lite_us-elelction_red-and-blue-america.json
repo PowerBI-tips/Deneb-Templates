@@ -1,0 +1,221 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+        "deneb": {
+            "build": "0.6.0.150",
+            "metaVersion": 1,
+            "provider": "vegaLite"
+        },
+        "interactivity": {
+            "tooltip": true,
+            "contextMenu": true,
+            "selection": true,
+            "dataPointLimit": 50
+        },
+        "information": {
+            "name": "Column Chart Facet Plot with US State Coordinates",
+            "description": "Provide facets field and fields to specify x/y coordinates of facet. Additionally requires a categorical field and its sort value, as well as measure and legend category for color. Should theoretically work with other use cases, but primarily designed for a US-based visual w/binary legend.",
+            "author": "Daniel Marsh-Patrick",
+            "uuid": "d9fd75fb-9d40-4411-801c-5b490a4070d6",
+            "generated": "2021-11-10T02:25:10.942Z"
+        },
+        "dataset": [
+            {
+                "key": "__0__",
+                "name": "Facet-X",
+                "description": "X-coordinate of main facet",
+                "type": "numeric",
+                "kind": "column"
+            },
+            {
+                "key": "__1__",
+                "name": "Facet-Y",
+                "description": "Y-coordinate of main facet",
+                "type": "numeric",
+                "kind": "column"
+            },
+            {
+                "key": "__2__",
+                "name": "Facet",
+                "description": "Value to use for the facet category (typically State)",
+                "type": "text",
+                "kind": "column"
+            },
+            {
+                "key": "__3__",
+                "name": "Axis",
+                "description": "Category to use for the column chart x-axis",
+                "type": "text",
+                "kind": "column"
+            },
+            {
+                "key": "__4__",
+                "name": "Axis Sort Value",
+                "description": "Category to use for the column chart axis sort (use the same as Axis if these match)",
+                "type": "numeric",
+                "kind": "column"
+            },
+            {
+                "key": "__5__",
+                "name": "Legend",
+                "description": "Category to color by in column chart",
+                "type": "text",
+                "kind": "column"
+            },
+            {
+                "key": "__6__",
+                "name": "Measure",
+                "description": "Measure to plot in the column chart",
+                "type": "numeric",
+                "kind": "measure"
+            }
+        ]
+    },
+    "config": {
+        "font": "Segoe UI",
+        "view": { "stroke": "transparent" },
+        "facet": { "spacing": 2 },
+        "axisX": { "disable": true },
+        "axisY": { "disable": true },
+        "rule": { "strokeWidth": 0.5 },
+        "text": {
+            "baseline": "middle",
+            "y": 0
+        }
+    },
+    "data": { "name": "dataset" },
+    "facet": {
+        "column": {
+            "field": "__0__",
+            "header": null
+        },
+        "row": {
+            "field": "__1__",
+            "header": null,
+            "sort": "descending"
+        }
+    },
+    "transform": [
+        {
+            "calculate": "datum['__selected__'] === 'on' ? 1 : 0",
+            "as": "Axis_Selected"
+        },
+        {
+            "calculate": "datum['__selected__'] === 'off' ? 1 : 0",
+            "as": "Axis_Deselected"
+        }
+    ],
+    "spec": {
+        "height": 74,
+        "width": 59,
+        "layer": [
+            {
+                "description": "Data bars",
+                "mark": {
+                    "type": "bar",
+                    "tooltip": true
+                },
+                "encoding": {
+                    "x": {
+                        "field": "__3__",
+                        "scale": {
+                            "paddingInner": 0.05
+                        },
+                        "sort": {
+                            "field": "__4__",
+                            "op": "sum"
+                        }
+                    },
+                    "y": {
+                        "field": "__6__",
+                        "type": "quantitative"
+                    },
+                    "color": {
+                        "field": "__5__",
+                        "legend": null,
+                        "scale": {
+                            "range": ["#278FB2", "#C82500"]
+                        }
+                    },
+                    "opacity": {
+                        "condition": {
+                            "test": {
+                                "field": "__selected__",
+                                "equal": "off"
+                            },
+                            "value": 0.2
+                        },
+                        "value": 1
+                    },
+                    "tooltip": [
+                        { "field": "__2__" },
+                        { "field": "__3__" },
+                        { "field": "__5__" },
+                        { "field": "__6__" }
+                    ]
+                }
+            },
+            {
+                "description": "Facet-specific elements (different grain)",
+                "transform": [
+                    {
+                        "aggregate": [
+                            {
+                                "op": "sum",
+                                "field": "Axis_Selected",
+                                "as": "count_axis_selected"
+                            },
+                            {
+                                "op": "sum",
+                                "field": "Axis_Deselected",
+                                "as": "count_axis_deselected"
+                            },
+                            {
+                                "op": "count",
+                                "as": "count_axis"
+                            }
+                        ],
+                        "groupby": ["__2__"]
+                    },
+                    {
+                        "calculate": "datum['count_axis'] === datum['count_axis_selected']",
+                        "as": "facet_selected"
+                    },
+                    {
+                        "calculate": "datum['count_axis'] === datum['count_axis_deselected']",
+                        "as": "facet_deselected"
+                    }
+                ],
+                "encoding": {
+                    "text": { "field": "__2__" },
+                    "opacity": {
+                        "condition": {
+                            "test": {
+                                "field": "facet_deselected",
+                                "equal": true
+                            },
+                            "value": 0.2
+                        },
+                        "value": 1
+                    }
+                },
+                "layer": [
+                    {
+                        "mark": {
+                            "type": "text",
+                            "fontWeight": {
+                                "expr": "datum['facet_selected'] ? 900 : 'normal'"
+                            }
+                        }
+                    },
+                    {
+                        "mark": { "type": "rule" },
+                        "encoding": {
+                            "y": { "datum": 0 }
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

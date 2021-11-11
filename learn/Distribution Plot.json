@@ -1,0 +1,279 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "0.6.0.150",
+        "metaVersion": 1,
+        "provider": "vegaLite"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": false,
+        "selection": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Distribution with Bands",
+        "description": "Sample chart showing the ability to add distribution calculations",
+        "author": "Daniel Marsh-Patrick",
+        "uuid": "a5c51dd2-0ae5-4705-8576-c0a66112c314",
+        "generated": "2021-11-11T03:34:42.186Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "Category",
+          "description": "List of values",
+          "type": "numeric",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "Measure",
+          "description": "Select the Y-axis measure value.  This is the value that will be calculated for each categorical value.",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "font": "Segoe UI",
+      "view": {"stroke": "transparent"},
+      "header": {
+        "title": "",
+        "labelColor": "#333",
+        "labelOrient": "top",
+        "labelAnchor": "start",
+        "labelFontSize": 16,
+        "labelFontWeight": 400,
+        "labelPadding": -35
+      },
+      "axis": {
+        "domain": false,
+        "labelColor": "#605E5C",
+        "labelFontSize": 12,
+        "labelPadding": 5,
+        "ticks": false,
+        "tickCount": 5,
+        "titleFontSize": 12,
+        "titleFontWeight": 400,
+        "titleColor": "#605E5C",
+        "titlePadding": 5,
+        "gridDash": [1, 5],
+        "gridColor": "#A9A9A9",
+        "nice": true
+      },
+      "axisY": {"title": ""},
+      "line": {
+        "interpolate": "cardinal",
+        "strokeWidth": 3,
+        "strokeCap": "round",
+        "color": "#605E5C"
+      },
+      "rect": {"color": "#eaeaea"},
+      "text": {
+        "baseline": "bottom",
+        "align": "center",
+        "dy": -2,
+        "y": 0,
+        "fontSize": 10,
+        "fontWeight": 500
+      },
+      "rule": {"size": 3, "opacity": 0.75}
+    },
+    "data": {"name": "dataset"},
+    "layer": [
+      {
+        "description": "IQR Rect",
+        "mark": {
+          "type": "rect",
+          "tooltip": null
+        },
+        "encoding": {
+          "x": {
+            "aggregate": "q1",
+            "field": "__1__"
+          },
+          "x2": {
+            "aggregate": "q3",
+            "field": "__1__"
+          }
+        }
+      },
+      {
+        "description": "Quantiles",
+        "transform": [
+          {
+            "quantile": "__1__",
+            "probs": [
+              0.05,
+              0.25,
+              0.5,
+              0.75,
+              0.95
+            ],
+            "groupby": ["City"]
+          }
+        ],
+        "layer": [
+          {
+            "description": "Quantitle Lines",
+            "mark": {
+              "type": "rule",
+              "tooltip": null
+            },
+            "encoding": {
+              "x": {
+                "field": "value",
+                "type": "quantitative"
+              },
+              "color": {
+                "condition": [
+                  {
+                    "test": "datum.prob === 0.05 || datum.prob === 0.95",
+                    "value": "#A8337D"
+                  }
+                ],
+                "value": "#0D6ABF"
+              },
+              "strokeDash": {
+                "condition": [
+                  {
+                    "test": "datum.prob === 0.5 || datum.prob === 0.05 || datum.prob === 0.95",
+                    "value": [1, 0]
+                  }
+                ],
+                "value": [0, 1]
+              }
+            }
+          },
+          {
+            "description": "Quantitle Labels",
+            "mark": {"type": "text"},
+            "encoding": {
+              "x": {
+                "field": "value",
+                "type": "quantitative"
+              },
+              "text": {
+                "condition": [
+                  {
+                    "test": "datum.prob === 0.25",
+                    "value": "Q1"
+                  },
+                  {
+                    "test": "datum.prob === 0.5",
+                    "value": "Med."
+                  },
+                  {
+                    "test": "datum.prob === 0.75",
+                    "value": "Q3"
+                  }
+                ],
+                "field": "prob",
+                "title": "Probability",
+                "format": ".0%"
+              },
+              "color": {
+                "condition": [
+                  {
+                    "test": "datum.prob === 0.05 || datum.prob === 0.95",
+                    "value": "#A8337D"
+                  },
+                  {
+                    "test": "datum.prob === 0.5",
+                    "value": "#0D6ABF"
+                  }
+                ],
+                "value": "#605E5C"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "description": "Density Line Plot",
+        "transform": [
+          {
+            "density": "__1__",
+            "bandwidth": 0.4
+          }
+        ],
+        "layer": [
+          {
+            "description": "Density Line Halo",
+            "mark": {
+              "type": "line",
+              "color": "white",
+              "strokeWidth": 8
+            }
+          },
+          {
+            "description": "Density Line",
+            "mark": {"type": "line"}
+          },
+          {
+            "description": "Mouse hover - Density Line",
+            "params": [
+              {
+                "name": "hover",
+                "select": {
+                  "type": "point",
+                  "on": "mouseover",
+                  "clear": "mouseout",
+                  "nearest": true,
+                  "encodings": ["x"]
+                }
+              }
+            ],
+            "mark": {
+              "type": "rule",
+              "size": 1,
+              "color": "#8B8A88"
+            },
+            "encoding": {
+              "tooltip": [
+                {
+                  "title": "Temperature (°C)",
+                  "field": "value",
+                  "format": "#0.00",
+                  "formatType": "pbiFormat"
+                },
+                {
+                  "title": "Density (%)",
+                  "field": "density",
+                  "format": "0.0%",
+                  "formatType": "pbiFormat"
+                }
+              ],
+              "y": {"value": "height"},
+              "y2": {"value": 0},
+              "opacity": {
+                "condition": {
+                  "param": "hover",
+                  "value": 1,
+                  "empty": false
+                },
+                "value": 0
+              }
+            }
+          }
+        ],
+        "encoding": {
+          "x": {
+            "field": "value",
+            "title": "Temperature (°C)",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "density",
+            "type": "quantitative",
+            "axis": {
+              "format": "0.%",
+              "formatType": "pbiFormat"
+            }
+          }
+        }
+      }
+    ]
+  }

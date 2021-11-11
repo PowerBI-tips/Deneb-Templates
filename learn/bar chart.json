@@ -1,0 +1,89 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "0.6.0.150",
+        "metaVersion": 1,
+        "provider": "vegaLite"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": true,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Simple Bar Chart",
+        "description": "Bar chart with rounded edges.",
+        "author": "Daniel Marsh-Patrick",
+        "uuid": "648b35ac-61b4-4e32-8b63-8ee8e6a9fbbe",
+        "generated": "2021-11-11T03:37:24.021Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "Category",
+          "description": "Select a column that provides categorical values",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "Measure",
+          "description": "Select a measure to be calculated for each category",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      },
+      "view": {"stroke": "transparent"},
+      "font": "Segoe UI",
+      "bar": {
+        "color": "#605E5C",
+        "cornerRadiusTopRight": 10,
+        "cornerRadiusBottomRight": 10
+      },
+      "axis": {
+        "domain": false,
+        "labelColor": "#605E5C",
+        "labelFontSize": 12,
+        "labelPadding": 5,
+        "ticks": false,
+        "tickCount": 5,
+        "titleFontSize": 14,
+        "titleFontWeight": "bold",
+        "titleColor": "#605E5C",
+        "gridDash": [1, 5],
+        "gridColor": "#605E5C"
+      }
+    },
+    "data": {"name": "dataset"},
+    "mark": {
+      "type": "bar",
+      "tooltip": true
+    },
+    "encoding": {
+      "y": {
+        "field": "__0__",
+        "type": "nominal"
+      },
+      "x": {
+        "field": "__1__",
+        "type": "quantitative"
+      },
+      "opacity": {
+        "condition": {
+          "test": {
+            "field": "__selected__",
+            "equal": "off"
+          },
+          "value": 0.3
+        }
+      }
+    }
+  }

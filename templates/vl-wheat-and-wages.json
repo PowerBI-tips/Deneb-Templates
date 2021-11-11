@@ -1,0 +1,134 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 900,
+  "height": 465,
+  "config": {
+    "padding": 5,
+    "view": {"stroke": "transparent"},
+    "axis": {"title": null, "domain": false, "tickCount": 5},
+    "axisX": {"grid": false},
+    "axisY": {
+      "orient": "right",
+      "offset": 5,
+      "tickSize": 0,
+      "gridOpacity": 0.5,
+      "gridColor": "#fff",
+      "gridWidth": 1,
+      "labelFontStyle": "italic"
+    },
+    "style": {
+      "bar_wheat": {"color": "#aaa", "stroke": "#5d5d5d", "strokeWidth": 0.25},
+      "bar_monarchy": {"stroke": "#000", "strokeWidth": 2},
+      "text_monarchy": {
+        "font": "Helvetica Neue, Arial",
+        "fontSize": 10,
+        "fontStyle": "italic"
+      }
+    },
+    "area": {
+      "fill": "#83D9E6",
+      "fillOpacity": 0.8,
+      "line": {"stroke": "#ff7e79", "strokeWidth": 3}
+    },
+    "line": {"stroke": "#000", "strokeWidth": 1}
+  },
+  "params": [
+    {"name": "wheat_bar_width", "value": 17},
+    {"name": "monarchy_bar_height", "value": 10},
+    {"name": "monarchy_y_start", "value": 95}
+  ],
+  "encoding": {
+    "x": {
+      "type": "quantitative",
+      "axis": {"format": "04d"},
+      "scale": {"zero": false, "domain": [1565, 1825]}
+    }
+  },
+  "layer": [
+    {
+      "description": "Wheat & Wages main data plots",
+      "data": {"url": "data/wheat.json", "name": "wheat"},
+      "encoding": {
+        "x": {"field": "year"},
+        "y": {"type": "quantitative", "axis": {"zindex": 1}}
+      },
+      "layer": [
+        {
+          "description": "Price of wheat (bar)",
+          "encoding": {"y": {"field": "wheat"}},
+          "mark": {
+            "type": "bar",
+            "style": "bar_wheat",
+            "xOffset": {"expr": "wheat_bar_width / 2"},
+            "width": {"expr": "wheat_bar_width"}
+          }
+        },
+        {
+          "encoding": {"y": {"field": "wages"}},
+          "layer": [
+            {
+              "description": "Wages of mechanic area w/line",
+              "mark": {"type": "area"}
+            },
+            {
+              "description": "Wages of mechanic accent line",
+              "mark": {"type": "line"}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Monarchy Overlay",
+      "data": {"url": "data/monarchs.json", "name": "monarchs"},
+      "transform": [
+        {
+          "calculate": "datum.end - ((datum.end - datum.start) / 2)",
+          "as": "midpoint_x"
+        },
+        {"calculate": "monarchy_y_start", "as": "bar_y"},
+        {
+          "calculate": "!datum.commonwealth && datum.index % 2",
+          "as": "bar_offset"
+        },
+        {
+          "calculate": "(datum.bar_offset ? -1: 1) * 2 + datum.bar_y",
+          "as": "bar_y2"
+        },
+        {
+          "calculate": "datum.bar_offset ? datum.bar_y2 : datum.bar_y",
+          "as": "label_y"
+        }
+      ],
+      "layer": [
+        {
+          "encoding": {
+            "x": {"field": "start"},
+            "x2": {"field": "end"},
+            "y": {"field": "bar_y", "type": "quantitative"},
+            "y2": {"field": "bar_y2"},
+            "color": {
+              "field": "commonwealth",
+              "legend": null,
+              "scale": {"range": ["black", "white"]}
+            }
+          },
+          "mark": {
+            "description": "Timeline bar",
+            "type": "bar",
+            "style": "bar_monarchy",
+            "height": {"expr": "monarchy_bar_height"}
+          }
+        },
+        {
+          "encoding": {
+            "x": {"field": "midpoint_x", "type": "quantitative"},
+            "y": {"field": "label_y", "type": "quantitative"},
+            "text": {"field": "name"}
+          },
+          "mark": {"type": "text", "style": "text_monarchy", "yOffset": 10}
+        }
+      ]
+    }
+  ]
+}
