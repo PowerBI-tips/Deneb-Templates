@@ -1,0 +1,106 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.1.0.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.2.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "Simple Gantt Chart",
+      "description": "Very simple chart which splits data categories into a typical gantt chart, giving the user an overall picture of timeline.\n\"height\": {\"step\": 16} - can be used to change the thickness of the bars",
+      "author": "Dion Jones",
+      "uuid": "46ffb35d-895e-4309-b9c8-c78b243b5311",
+      "generated": "2022-02-07T00:07:18.457Z"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Category",
+        "description": "basis upon which to split the data into rows",
+        "type": "text",
+        "kind": "column",
+        "namePlaceholder": "Loan"
+      },
+      {
+        "key": "__1__",
+        "name": "Gantt Start",
+        "description": "date of gantt line start",
+        "type": "dateTime",
+        "kind": "measure",
+        "namePlaceholder": "Gantt Start"
+      },
+      {
+        "key": "__2__",
+        "name": "Gantt End",
+        "description": "date of gantt line end",
+        "type": "dateTime",
+        "kind": "measure",
+        "namePlaceholder": "Gantt End"
+      },
+      {
+        "key": "__3__",
+        "name": "Duration",
+        "description": "allows colour intensity highlighting based on length of category duration",
+        "type": "numeric",
+        "kind": "measure",
+        "namePlaceholder": "Duration"
+      }
+    ]
+  },
+  "config": {
+    "autosize": {
+      "type": "fit",
+      "contains": "padding"
+    }
+  },
+  "height": {"step": 16},
+  "data": {"name": "dataset"},
+  "title": {
+    "text": "Simple Gantt Chart",
+    "align": "left",
+    "anchor": "start",
+    "offset": 12
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "tooltip": true
+      },
+      "encoding": {
+        "color": {
+          "field": "__3__",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "__0__",
+          "type": "ordinal",
+          "title": false
+        },
+        "x": {
+          "field": "__1__",
+          "type": "temporal",
+          "axis": {
+            "tickCount": 10,
+            "labelAlign": "left",
+            "labelExpr": "[timeFormat(datum.value, '%b'), timeFormat(datum.value, '%m') == '01' ? timeFormat(datum.value, '%Y') : '']",
+            "title": false
+          }
+        },
+        "x2": {
+          "field": "__2__",
+          "type": "temporal",
+          "timeUnit": "yearmonthdate"
+        }
+      }
+    }
+  ]
+}
