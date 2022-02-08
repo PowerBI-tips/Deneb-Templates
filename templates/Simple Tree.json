@@ -1,0 +1,166 @@
+{
+    "$schema": "https://vega.github.io/schema/vega/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.0.0.157",
+        "metaVersion": 1,
+        "provider": "vega"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Simple Tree",
+        "description": "Tree diagram using a list of names with ParentID and ChildrenId fields.",
+        "author": "Kerry Kolosko",
+        "url": "https://kerrykolosko.com/portfolio/simple-tree/",
+        "uuid": "321a61fa-f71a-4cd0-96b3-f5cf06457db1",
+        "generated": "2022-02-02T11:30:35.340Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "id",
+          "description": "",
+          "type": "numeric",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "name",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__2__",
+          "name": "children",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        },
+        {
+          "key": "__3__",
+          "name": "parentid",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      }
+    },
+    "data": [
+      {
+        "__1__": "dataset",
+        "transform": [
+          {
+            "key": "__0__",
+            "parentKey": "__3__",
+            "type": "stratify"
+          },
+          {
+            "method": "tidy",
+            "separation": false,
+            "as": [
+              "y",
+              "x",
+              "depth",
+              "__2__"
+            ],
+            "size": [
+              {"signal": "height"},
+              {"signal": "width - 100"}
+            ],
+            "type": "tree"
+          }
+        ]
+      },
+      {
+        "__1__": "links",
+        "source": "dataset",
+        "transform": [
+          {"type": "treelinks"},
+          {
+            "shape": "diagonal",
+            "type": "linkpath",
+            "orient": "horizontal"
+          }
+        ]
+      }
+    ],
+    "padding": 5,
+    "marks": [
+      {
+        "encode": {
+          "update": {
+            "stroke": {"value": "#ccc"},
+            "path": {"field": "path"}
+          }
+        },
+        "from": {"data": "links"},
+        "type": "path"
+      },
+      {
+        "encode": {
+          "update": {
+            "x": {"field": "x"},
+            "fill": {
+              "field": "depth",
+              "scale": "color"
+            },
+            "y": {"field": "y"}
+          },
+          "enter": {
+            "stroke": {"value": "#fff"},
+            "size": {"value": 100}
+          }
+        },
+        "from": {"data": "dataset"},
+        "type": "symbol"
+      },
+      {
+        "encode": {
+          "update": {
+            "align": {
+              "signal": "datum.__2__ ? 'right' : 'left'"
+            },
+            "x": {"field": "x"},
+            "dx": {
+              "signal": "datum.__2__ ? -7 : 7"
+            },
+            "opacity": {"value": 1},
+            "y": {"field": "y"}
+          },
+          "enter": {
+            "fontSize": {"value": 9},
+            "text": {"field": "__1__"},
+            "baseline": {
+              "value": "middle"
+            }
+          }
+        },
+        "from": {"data": "dataset"},
+        "type": "text"
+      }
+    ],
+    "scales": [
+      {
+        "__1__": "color",
+        "zero": true,
+        "range": {"scheme": "plasma"},
+        "domain": {
+          "data": "dataset",
+          "field": "depth"
+        },
+        "type": "linear"
+      }
+    ]
+  }

@@ -1,0 +1,128 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.0.0.157",
+        "metaVersion": 1,
+        "provider": "vegaLite"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": true,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Simple Fixed Height Bar",
+        "description": "Create a simple bar chart. The height of the bar is fixed.",
+        "url": "https://kerrykolosko.com/portfolio/simple-fixed-height-bar/",
+        "author": "Kerry Kolosko",
+        "uuid": "a107f765-4aec-456e-bc1f-1a35dc9717d7",
+        "generated": "2022-02-03T13:02:18.282Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "Category",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "Amount",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      },
+      "view": {"stroke": "transparent"},
+      "font": "Segoe UI",
+      "axis": {
+        "grid": false,
+        "domain": false
+      },
+      "legend": {"gradientLength": 50}
+    },
+    "data": {"name": "dataset"},
+    "height": {"step": 25},
+    "mark": {
+      "type": "bar",
+      "tooltip": true
+    },
+    "encoding": {
+      "y": {
+        "field": "__0__",
+        "type": "nominal",
+        "sort": "-x",
+        "title": null,
+        "axis": {
+          "labelPadding": 5,
+          "ticks": false,
+          "zindex": 1
+        }
+      },
+      "x": {
+        "field": "__1__",
+        "type": "quantitative",
+        "title": null,
+        "axis": null
+      },
+      "opacity": {
+        "condition": {
+          "test": {
+            "field": "__selected__",
+            "equal": "off"
+          },
+          "value": 0.3
+        }
+      }
+    },
+    "layer": [
+      {
+        "mark": "bar",
+        "encoding": {
+          "color": {
+            "scale": {
+              "scheme": "redpurple"
+            },
+            "legend": null,
+            "field": "__1__",
+            "type": "quantitative",
+            "title": ""
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "xOffset": -4,
+          "aria": false
+        },
+        "encoding": {
+          "text": {
+            "field": "__1__",
+            "type": "quantitative"
+          },
+          "color": {
+            "condition": {
+              "test": {
+                "field": "__1__",
+                "gt": 10
+              },
+              "value": "white"
+            },
+            "value": "black"
+          }
+        }
+      }
+    ]
+  }
+  

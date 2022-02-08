@@ -1,0 +1,85 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.0.0.157",
+        "metaVersion": 1,
+        "provider": "vegaLite"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Patterned Doughnut",
+        "description": "A doughnut with patterns for shading.",
+        "author": "Kerry Kolosko",
+        "url":"https://kerrykolosko.com/portfolio/patterned-doughnut/",
+        "uuid": "620e82b2-5eea-4cb0-8d4e-19c9b6e93614",
+        "generated": "2022-02-02T06:33:21.213Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "Category",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "Value",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      },
+      "view": {"stroke": "transparent"},
+      "font": "Segoe UI",
+      "legend": {
+        "labelFontSize": 16,
+        "titleFontSize": 16,
+        "title": "",
+        "labelLimit": 300,
+        "labelOffset": 3,
+        "offset": 10,
+        "legendX": 50,
+        "direction": "vertical",
+        "legendY": 50,
+        "orient": "top-center"
+      }
+    },
+    "data": {"name": "dataset"},
+    "mark": {
+      "type": "arc",
+      "innerRadius": 90,
+      "stroke": "black"
+    },
+    "encoding": {
+      "theta": {
+        "field": "__1__",
+        "type": "quantitative"
+      },
+      "color": {
+        "field": "__0__",
+        "scale": {
+          "range": [
+            "url(#diagonal-stripe-1-90)",
+            "black",
+            "white"
+          ]
+        },
+        "type": "nominal"
+      },
+      "opacity": {"value": 0.9}
+    },
+    "view": {"stroke": null}
+  }
