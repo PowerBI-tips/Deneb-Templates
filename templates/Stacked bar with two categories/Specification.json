@@ -1,29 +1,41 @@
 {
   "data": {"name": "dataset"},
-  "mark": {
-    "type": "bar",
-    "tooltip": true
-  },
   "encoding": {
-    "x": {
-      "field": "Relationship ID",
-      "type": "nominal"
-    },
     "y": {
+      "title": "Number of points",
       "field": "Relationships",
       "type": "quantitative"
     },
-    "yOffset": {"field": "Type"},
-    "color": {"field": "Type"},
-    "opacity": {
-      "condition": {
-        "test": {
-          "field": "__selected__",
-          "equal": "off"
-        },
-        "value": 0.3
-      },
-      "value": 1
+    "x": {
+      "field": "Relationship ID",
+      "type": "nominal",
+      "axis": {"labelAngle": 0}
     }
-  }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "xOffset": -16,
+        "size": 30,
+        "color": "#81c784"
+      },
+      "encoding": {
+        "yOffset": {"field": "Status"},
+        "color": {"field": "Status"}
+      }
+    },
+    {
+      "mark": {
+        "type": "bar",
+        "xOffset": 16,
+        "size": 30,
+        "color": "#81c784"
+      },
+      "encoding": {
+        "yOffset": {"field": "Type"},
+        "color": {"field": "Type"}
+      }
+    }
+  ]
 }
