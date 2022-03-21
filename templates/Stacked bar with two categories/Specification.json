@@ -1,0 +1,29 @@
+{
+  "data": {"name": "dataset"},
+  "mark": {
+    "type": "bar",
+    "tooltip": true
+  },
+  "encoding": {
+    "x": {
+      "field": "Relationship ID",
+      "type": "nominal"
+    },
+    "y": {
+      "field": "Relationships",
+      "type": "quantitative"
+    },
+    "yOffset": {"field": "Type"},
+    "color": {"field": "Type"},
+    "opacity": {
+      "condition": {
+        "test": {
+          "field": "__selected__",
+          "equal": "off"
+        },
+        "value": 0.3
+      },
+      "value": 1
+    }
+  }
+}
