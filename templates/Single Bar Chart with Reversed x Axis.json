@@ -1,0 +1,146 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.1.0.0",
+        "metaVersion": 1,
+        "provider": "vegaLite",
+        "providerVersion": "5.2.0"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Reverse Bar Chart",
+        "description": "Single bar chart with the x-axis in reverse. Accepts two inputs, Actual Value and Max value.",
+        "author": "Mike Carlo",
+        "uuid": "50ab2851-60f1-4dec-8281-fd9ce5c814c3",
+        "generated": "2022-04-05T16:35:42.768Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "Ages Value",
+          "description": "Supply a measure input of a single value. ",
+          "type": "numeric",
+          "kind": "measure"
+        },
+        {
+          "key": "__1__",
+          "name": "MAX Value",
+          "description": "Supply the max value for the entire bar, default should be 96.",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      },
+      "view": {"stroke": "transparent"},
+      "font": "Segoe UI",
+      "area": {
+        "line": true,
+        "opacity": 0.6
+      },
+      "line": {
+        "strokeWidth": 3,
+        "strokeCap": "round",
+        "strokeJoin": "round"
+      },
+      "point": {
+        "filled": true,
+        "size": 75
+      },
+      "text": {
+        "font": "Segoe UI",
+        "fontSize": 12,
+        "fill": "#605E5C"
+      },
+      "axis": {
+        "domain": false,
+        "labelColor": "#605E5C",
+        "labelFontSize": 12,
+        "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+        "titleColor": "#252423",
+        "titleFontSize": 16,
+        "titleFontWeight": "normal"
+      },
+      "axisQuantitative": {
+        "tickCount": 3,
+        "grid": true,
+        "gridColor": "#C8C6C4",
+        "gridDash": [1, 5],
+        "labelFlush": false
+      },
+      "axisBand": {"tickExtra": true},
+      "axisX": {"labelPadding": 5},
+      "axisY": {"labelPadding": 10},
+      "header": {
+        "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+        "titleFontSize": 16,
+        "titleColor": "#252423",
+        "labelFont": "Segoe UI",
+        "labelFontSize": 13.333333333333332,
+        "labelColor": "#605E5C"
+      },
+      "legend": {
+        "titleFont": "Segoe UI",
+        "titleFontWeight": "bold",
+        "titleColor": "#605E5C",
+        "labelFont": "Segoe UI",
+        "labelFontSize": 13.333333333333332,
+        "labelColor": "#605E5C",
+        "symbolType": "circle",
+        "symbolSize": 75
+      }
+    },
+    "data": {"name": "dataset"},
+    "encoding": {
+      "x": {
+        "field": "__0__",
+        "aggregate": "sum",
+        "sort": "descending",
+        "title": null
+      }
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "bar",
+          "color": "blue",
+          "stroke": "black"
+        },
+        "encoding": {
+          "x": {
+            "field": "__1__",
+            "aggregate": "max",
+            "type": "quantitative",
+            "axis": {
+              "ticks": true,
+              "tickCount": 5,
+              "values": [
+                0,
+                10,
+                26,
+                48,
+                96
+              ]
+            }
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "bar",
+          "color": "white",
+          "stroke": "black"
+        }
+      }
+    ]
+  }
