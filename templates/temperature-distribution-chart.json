@@ -1,0 +1,198 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+        "deneb": {
+            "build": "1.1.0.0",
+            "metaVersion": 1,
+            "provider": "vegaLite",
+            "providerVersion": "5.2.0"
+        },
+        "interactivity": {
+            "tooltip": true,
+            "contextMenu": true,
+            "selection": false,
+            "dataPointLimit": 50
+        },
+        "information": {
+            "name": "Temperature Distribution Chart",
+            "description": "Reddit thread: https://www.reddit.com/r/PowerBI/comments/tengnm/distribution_chart_anything_similar_in_pbi/",
+            "author": "Daniel Marsh-Patrick",
+            "uuid": "81588b86-2c15-4116-b3cf-8273cec84a1f",
+            "generated": "2022-03-16T00:25:41.571Z"
+        },
+        "dataset": [
+            {
+                "key": "__0__",
+                "name": "Month",
+                "description": "",
+                "type": "text",
+                "kind": "column"
+            },
+            {
+                "key": "__1__",
+                "name": "Year",
+                "description": "",
+                "type": "numeric",
+                "kind": "column"
+            },
+            {
+                "key": "__2__",
+                "name": "Temperature",
+                "description": "",
+                "type": "numeric",
+                "kind": "measure"
+            }
+        ]
+    },
+    "config": {
+        "autosize": {
+            "type": "fit",
+            "contains": "padding"
+        },
+        "view": { "stroke": "transparent" },
+        "font": "Segoe UI",
+        "rule": { "strokeWidth": 1 },
+        "point": { "size": 65 },
+        "text": {
+            "font": "Segoe UI",
+            "fontSize": 12,
+            "fill": "#605E5C"
+        },
+        "axis": {
+            "ticks": false,
+            "grid": false,
+            "domain": false,
+            "labelColor": "#605E5C",
+            "labelFontSize": 12,
+            "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+            "titleColor": "#252423",
+            "titleFontSize": 16,
+            "titleFontWeight": "normal"
+        },
+        "axisQuantitative": {
+            "tickCount": 3,
+            "grid": true,
+            "gridColor": "#C8C6C4",
+            "gridDash": [1, 5],
+            "labelFlush": false
+        },
+        "axisBand": { "tickExtra": true },
+        "axisX": { "labelPadding": 5 },
+        "axisY": {
+            "labelPadding": 10,
+            "title": null
+        },
+        "style": {
+            "pointMonth": {
+                "size": 30,
+                "filled": true,
+                "fillOpacity": 0.5,
+                "strokeWidth": 1
+            },
+            "pointMean": {
+                "color": "black",
+                "filled": true,
+                "size": 100
+            }
+        }
+    },
+    "data": { "name": "dataset" },
+    "layer": [
+        {
+            "description": "Monthly series",
+            "encoding": {
+                "y": {
+                    "field": "__0__",
+                    "sort": null,
+                    "scale": { "padding": 0.75 }
+                }
+            },
+            "layer": [
+                {
+                    "description": "Individual points",
+                    "transform": [
+                        {
+                            "calculate": "random()",
+                            "as": "jitter"
+                        }
+                    ],
+                    "encoding": {
+                        "x": { "field": "__2__" },
+                        "yOffset": {
+                            "field": "jitter"
+                        },
+                        "color": {
+                            "field": "__2__",
+                            "type": "quantitative",
+                            "legend": null,
+                            "scale": {
+                                "scheme": "lightmulti"
+                            }
+                        }
+                    },
+                    "mark": {
+                        "type": "point",
+                        "style": ["pointMonth"]
+                    }
+                },
+                {
+                    "description": "Monthly averages",
+                    "transform": [
+                        {
+                            "joinaggregate": [
+                                {
+                                    "op": "mean",
+                                    "field": "__2__",
+                                    "as": "Overall Mean Temperature"
+                                }
+                            ]
+                        }
+                    ],
+                    "encoding": {
+                        "x": {
+                            "field": "__2__",
+                            "aggregate": "mean"
+                        },
+                        "detail": { "field": "__0__" }
+                    },
+                    "layer": [
+                        {
+                            "description": "Rule linking point to overall mean",
+                            "encoding": {
+                                "x2": {
+                                    "field": "Overall Mean Temperature"
+                                }
+                            },
+                            "mark": { "type": "rule" }
+                        },
+                        {
+                            "description": "Point showing monthly mean",
+                            "mark": {
+                                "type": "point",
+                                "style": ["pointMean"]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "description": "Overall mean rule",
+            "encoding": {
+                "x": {
+                    "field": "__2__",
+                    "aggregate": "mean"
+                }
+            },
+            "mark": { "type": "rule" }
+        }
+    ],
+    "encoding": {
+        "x": {
+            "type": "quantitative",
+            "axis": {
+                "title": "Temperature °C"
+            }
+        }
+    }
+}
