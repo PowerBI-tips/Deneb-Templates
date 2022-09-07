@@ -26,32 +26,28 @@
         "name": "Category",
         "description": "basis upon which to split the data into rows",
         "type": "text",
-        "kind": "column",
-        "namePlaceholder": "Loan"
+        "kind": "column"
       },
       {
         "key": "__1__",
         "name": "Gantt Start",
         "description": "date of gantt line start",
         "type": "dateTime",
-        "kind": "measure",
-        "namePlaceholder": "Gantt Start"
+        "kind": "measure"
       },
       {
         "key": "__2__",
         "name": "Gantt End",
         "description": "date of gantt line end",
         "type": "dateTime",
-        "kind": "measure",
-        "namePlaceholder": "Gantt End"
+        "kind": "measure"
       },
       {
         "key": "__3__",
         "name": "Duration",
         "description": "allows colour intensity highlighting based on length of category duration",
         "type": "numeric",
-        "kind": "measure",
-        "namePlaceholder": "Duration"
+        "kind": "measure"
       }
     ]
   },

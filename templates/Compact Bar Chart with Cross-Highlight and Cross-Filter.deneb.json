@@ -1,0 +1,208 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.2.0.1",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.2.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": true,
+      "highlight": true,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "Compact Bar Chart with Cross-Highlight and Cross-Filter",
+      "description": "A simple bar chart, without axes. Series labels are included in the bar, and text marks have a halo effect to ensure that they are still visible if cross-highlighting is applied. Data labels are present for each bar and formatted with the thousand-separator.",
+      "author": "Daniel Marsh-Patrick",
+      "uuid": "b8c74d98-6782-4891-b614-e6e52c5cb12a",
+      "generated": "2022-05-05T23:26:17.935Z"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Category",
+        "description": "",
+        "type": "text",
+        "kind": "column"
+      },
+      {
+        "key": "__1__",
+        "name": "Measure",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      }
+    ]
+  },
+  "config": {
+    "view": { "stroke": "transparent" },
+    "font": "Segoe UI",
+    "arc": {},
+    "area": {
+      "line": true,
+      "opacity": 0.6
+    },
+    "bar": {},
+    "line": {
+      "strokeWidth": 3,
+      "strokeCap": "round",
+      "strokeJoin": "round"
+    },
+    "path": {},
+    "point": {
+      "filled": true,
+      "size": 75
+    },
+    "rect": {},
+    "shape": {},
+    "symbol": {
+      "strokeWidth": 1.5,
+      "size": 50
+    },
+    "text": {
+      "font": "Segoe UI",
+      "fontSize": 12,
+      "fill": "#605E5C"
+    },
+    "axis": {
+      "ticks": false,
+      "grid": false,
+      "domain": false,
+      "labelColor": "#605E5C",
+      "labelFontSize": 12,
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleColor": "#252423",
+      "titleFontSize": 16,
+      "titleFontWeight": "normal"
+    },
+    "axisQuantitative": {
+      "tickCount": 3,
+      "grid": true,
+      "gridColor": "#C8C6C4",
+      "gridDash": [1, 5],
+      "labelFlush": false
+    },
+    "axisBand": { "tickExtra": true },
+    "axisX": { "labelPadding": 5 },
+    "axisY": { "labelPadding": 10 },
+    "header": {
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleFontSize": 16,
+      "titleColor": "#252423",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 13.333333333333332,
+      "labelColor": "#605E5C"
+    },
+    "legend": {
+      "titleFont": "Segoe UI",
+      "titleFontWeight": "bold",
+      "titleColor": "#605E5C",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 13.333333333333332,
+      "labelColor": "#605E5C",
+      "symbolType": "circle",
+      "symbolSize": 75
+    }
+  },
+  "data": { "name": "dataset" },
+  "layer": [
+    {
+      "description": "Original value data bar",
+      "mark": {
+        "type": "bar",
+        "opacity": 0.3
+      }
+    },
+    {
+      "description": "Highlight and regular marks",
+      "encoding": {
+        "opacity": {
+          "condition": [
+            {
+              "test": {
+                "field": "__selected__",
+                "equal": "off"
+              },
+              "value": 0
+            }
+          ],
+          "value": 1
+        }
+      },
+      "layer": [
+        {
+          "description": "Data label",
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 5
+          },
+          "encoding": {
+            "text": {
+              "field": "__1____highlight",
+              "format": "#,#",
+              "formatType": "pbiFormat"
+            }
+          }
+        },
+        {
+          "description": "Highlight value data bar",
+          "encoding": {
+            "x": {
+              "field": "__1____highlight"
+            }
+          },
+          "mark": { "type": "bar" }
+        },
+        {
+          "description": "Category label halo",
+          "mark": {
+            "type": "text",
+            "stroke": "#333",
+            "strokeWidth": 2,
+            "align": "left",
+            "dx": 5
+          },
+          "encoding": {
+            "x": { "datum": 0 },
+            "text": { "field": "__0__" }
+          }
+        },
+        {
+          "description": "Category label",
+          "mark": {
+            "type": "text",
+            "color": "white",
+            "align": "left",
+            "dx": 5
+          },
+          "encoding": {
+            "x": { "datum": 0 },
+            "text": { "field": "__0__" }
+          }
+        }
+      ]
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "__0__",
+      "type": "nominal",
+      "axis": null,
+      "sort": {
+        "op": "sum",
+        "field": "__1__",
+        "order": "descending"
+      }
+    },
+    "x": {
+      "field": "__1__",
+      "type": "quantitative",
+      "axis": null
+    }
+  }
+}
