@@ -1,0 +1,278 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.4.0.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.4.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "Hex-map with sparkline",
+      "description": "Add the following columns: Column, Row, Year, Total, Abbreviation",
+      "author": "Pha Nguyen",
+      "uuid": "d0685ad0-71f6-4ada-aa29-68fe027c23c7",
+      "generated": "2022-09-06T09:44:47.411Z"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Column",
+        "description": "",
+        "type": "numeric",
+        "kind": "column"
+      },
+      {
+        "key": "__1__",
+        "name": "Row",
+        "description": "",
+        "type": "numeric",
+        "kind": "column"
+      },
+      {
+        "key": "__2__",
+        "name": "Year",
+        "description": "",
+        "type": "numeric",
+        "kind": "column"
+      },
+      {
+        "key": "__3__",
+        "name": "Total",
+        "description": "",
+        "type": "numeric",
+        "kind": "column"
+      },
+      {
+        "key": "__4__",
+        "name": "Abbreviation",
+        "description": "",
+        "type": "text",
+        "kind": "column"
+      }
+    ]
+  },
+  "config": {
+    "background": "#fffaec",
+    "width": "container",
+    "height": "container",
+    "autosize": {
+      "type": "fit",
+      "contains": "padding",
+      "resize": true
+    },
+    "view": {"stroke": "transparent"},
+    "font": "Segoe UI",
+    "arc": {},
+    "area": {
+      "line": true,
+      "opacity": 0.6
+    },
+    "bar": {},
+    "line": {
+      "strokeWidth": 2,
+      "color": "#605A56",
+      "strokeCap": "round",
+      "strokeJoin": "round"
+    },
+    "path": {},
+    "point": {
+      "filled": true,
+      "size": 50
+    },
+    "circle": {
+      "color": "#605A56",
+      "size": 25
+    },
+    "rect": {},
+    "shape": {
+      "opacity": 0.1,
+      "         Color": "#bdbdbd"
+    },
+    "symbol": {
+      "strokeWidth": 1.5,
+      "size": 50
+    },
+    "text": {},
+    "axis": {
+      "ticks": false,
+      "grid": false,
+      "domain": false,
+      "labelColor": "#969696",
+      "labelFontSize": 12,
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleColor": "#969696",
+      "titleFontSize": 16,
+      "titleFontWeight": "normal"
+    },
+    "axisQuantitative": {
+      "tickCount": 5,
+      "grid": false,
+      "gridColor": "#C8C6C4",
+      "gridDash": [1, 5],
+      "labelFlush": true
+    },
+    "axisBand": {"tickExtra": true},
+    "axisX": {"labelPadding": 1},
+    "axisY": {"labelPadding": 1},
+    "header": {
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleFontSize": 16,
+      "titleColor": "#252423",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 13.333333333333332,
+      "labelColor": "#605E5C"
+    },
+    "legend": {
+      "titleFont": "Segoe UI",
+      "titleFontWeight": "bold",
+      "titleColor": "#969696",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 12,
+      "labelColor": "#969696",
+      "symbolType": "circle",
+      "symbolBaseFillColor": "grey",
+      "symbolSize": 65
+    }
+  },
+  "data": {"name": "dataset"},
+  "facet": {
+    "row": {
+      "field": "__1__",
+      "title": "",
+      "header": {
+        "labelAngle": 0,
+        "labelColor": "transparent"
+      }
+    },
+    "column": {
+      "field": "__0__",
+      "title": "",
+      "header": {
+        "labelAngle": 0,
+        "labelColor": "transparent"
+      }
+    }
+  },
+  "spec": {
+    "width": 35,
+    "height": 10,
+    "mark": {
+      "type": "line",
+      "width": 450,
+      "tooltip": true
+    },
+    "encoding": {
+      "x": {
+        "field": "__2__",
+        "type": "nominal",
+        "title": null,
+        "axis": false
+      },
+      "y": {
+        "field": "__3__",
+        "type": "quantitative",
+        "title": null,
+        "axis": false
+      }
+    },
+    "layer": [
+      {"mark": "line", "tooltip": true},
+      {
+        "encoding": {
+          "x": {
+            "aggregate": "max",
+            "field": "__2__"
+          },
+          "y": {
+            "aggregate": {
+              "argmax": "__2__"
+            },
+            "field": "__3__"
+          }
+        },
+        "layer": [
+          {"mark": {"type": "circle"}},
+          {
+            "layer": [
+              {
+                "transform": [
+                  {
+                    "filter": {
+                      "field": "__2__",
+                      "equal": 2017
+                    }
+                  }
+                ],
+                "mark": {
+                  "type": "text",
+                  "align": "left",
+                  "dx": -32,
+                  "dy": 24,
+                  "color": "#3e90a2",
+                  "font": "Segoe UI Semibold",
+                  "fontSize": 16,
+                  "FontWeight": "bold"
+                },
+                "encoding": {
+                  "text": {
+                    "field": "__3__",
+                    "format": ".1%"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "layer": [
+              {
+                "mark": {
+                  "type": "text",
+                  "text": "?",
+                  "size": 58,
+                  "angle": 90,
+                  "align": "center",
+                  "dy": 22,
+                  "color": "#3e90a2",
+                  "opacity": 0.6
+                }
+              },
+              {
+                "mark": {
+                  "type": "text",
+                  "align": "left",
+                  "dx": -30,
+                  "dy": -24,
+                  "font": "Monda",
+                  "fontSize": 16,
+                  "fontWeight": "bold",
+                  "color": "#b0aa5c"
+                },
+                "encoding": {
+                  "text": {
+                    "field": "__4__",
+                    "type": "nominal"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "resolve": {
+    "scale": {
+      "x": "independent",
+      "y": "independent"
+    }
+  },
+  "spacing": {"column": 0, "row": 0}
+}

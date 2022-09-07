@@ -1,0 +1,142 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.4.0.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.4.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "Orbital Chart",
+      "description": "Just copy and paste to Deneb's specfication or vega editior online",
+      "author": "Pha Nguyen",
+      "uuid": "ff30eec6-71be-438b-a065-f4219134ac7d",
+      "generated": "2022-09-04T07:30:51.429Z"
+    },
+    "dataset": [{}]
+  },
+  "config": {},
+  "data": {
+    "values": [
+      {
+        "Region": "Segment1",
+        "value": 5
+      },
+      {
+        "Region": "Segment2",
+        "value": 10
+      },
+      {
+        "Region": "Segment3",
+        "value": 15
+      },
+      {
+        "Region": "Segment4",
+        "value": 20
+      }
+    ]
+  },
+  "width": "70",
+  "height": 80,
+  "transform": [
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "value",
+          "as": "total"
+        }
+      ]
+    }
+  ],
+  "facet": {
+    "field": "Region",
+    "title": "",
+    "header": {
+      "labelAngle": 0,
+      "labelAnchor": "center",
+      "labelBaseline": "line-bottom",
+      "labelOrient": "top",
+      "labelFontSize": 14,
+      "labelPadding": -35
+    }
+  },
+  "columns": 4,
+  "align": "each",
+  "spacing": 18,
+  "spec": {
+    "layer": [
+      {
+        "mark": {
+          "type": "arc",
+          "radius": 50,
+          "radius2": 52,
+          "padAngle": 0.03,
+          "cornerRadius": 3,
+          "color": "lightgrey"
+        },
+        "encoding": {
+          "theta": {
+            "field": "total",
+            "type": "quantitative"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "arc",
+          "radius": 48,
+          "radius2": 54,
+          "padAngle": 0.03,
+          "cornerRadius": 3
+        },
+        "encoding": {
+          "theta": {
+            "field": "value",
+            "type": "quantitative"
+          },
+          "color": {"field": "Region"}
+        }
+      },
+      {
+        "mark": {
+          "type": "arc",
+          "radius": 45
+        },
+        "encoding": {
+          "color": {
+            "value": "lightgrey"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "radius": 2,
+          "color": "black",
+          "fontSize": 20
+        },
+        "encoding": {
+          "text": {
+            "field": "value",
+            "type": "quantitative",
+            "aggregate": "sum"
+          },
+          "detail": {
+            "field": "Segment",
+            "type": "nominal"
+          }
+        }
+      }
+    ],
+    "view": {"stroke": null}
+  }
+}

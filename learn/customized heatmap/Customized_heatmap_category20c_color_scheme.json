@@ -1,0 +1,287 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.4.0.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.4.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "Customized Heatmap with category20c Color Scheme",
+      "description": "[No Description Provided]",
+      "author": "Pha Nguyen",
+      "uuid": "df8e3861-1c14-4f12-af6a-5965c8f3ad54",
+      "generated": "2022-09-06T09:01:15.517Z"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "H",
+        "description": "Hours",
+        "type": "numeric",
+        "kind": "column"
+      },
+      {
+        "key": "__1__",
+        "name": "DayOfWeek",
+        "description": "Day of Week (Monday : 1, Tuesday: 2...)",
+        "type": "numeric",
+        "kind": "column"
+      },
+      {
+        "key": "__2__",
+        "name": "Weekday Initial",
+        "description": "Weekday Initial (M, T, W.....)",
+        "type": "text",
+        "kind": "column"
+      },
+      {
+        "key": "__3__",
+        "name": "Avg_ Inbound calls",
+        "description": "Measures of average inbound calls",
+        "type": "numeric",
+        "kind": "measure"
+      }
+    ]
+  },
+  "config": {
+    "width": "container",
+    "height": "container",
+    "autosize": {
+      "type": "fit",
+      "contains": "padding",
+      "resize": true
+    },
+    "view": {"stroke": "transparent"},
+    "font": "Segoe UI",
+    "arc": {},
+    "area": {
+      "line": true,
+      "opacity": 0.6
+    },
+    "bar": {
+      "size": 12,
+      "stroke": "white",
+      "strokeOpacity": 0.7
+    },
+    "line": {
+      "strokeWidth": 3,
+      "strokeCap": "round",
+      "strokeJoin": "round"
+    },
+    "path": {},
+    "point": {
+      "filled": true,
+      "size": 15
+    },
+    "circle": {
+      "strokeWidth": 1,
+      "size": 50
+    },
+    "rect": {},
+    "shape": {},
+    "symbol": {
+      "strokeWidth": 1.5,
+      "size": 15
+    },
+    "text": {
+      "font": "Segoe UI Semibold",
+      "fontSize": 12,
+      "FontWeight": "bold",
+      "fill": "#969696"
+    },
+    "axis": {
+      "ticks": false,
+      "grid": false,
+      "domain": false,
+      "labelColor": "#969696",
+      "labelFontSize": 12,
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleColor": "#969696",
+      "titleFontSize": 16,
+      "titleFontWeight": "normal"
+    },
+    "axisQuantitative": {
+      "tickCount": 5,
+      "grid": false,
+      "gridColor": "#C8C6C4",
+      "gridDash": [1, 5],
+      "labelFlush": false
+    },
+    "axisBand": {"tickExtra": true},
+    "axisX": {"labelPadding": 5},
+    "axisY": {"labelPadding": 10},
+    "header": {
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleFontSize": 16,
+      "titleColor": "#252423",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 13.333333333333332,
+      "labelColor": "#605E5C"
+    },
+    "legend": {
+      "titleFont": "Segoe UI",
+      "titleFontWeight": "bold",
+      "titleColor": "#969696",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 12,
+      "labelColor": "#969696",
+      "symbolType": "circle",
+      "symbolBaseFillColor": "grey",
+      "symbolSize": 65
+    }
+  },
+  "data": {"name": "dataset"},
+  "spacing": 0,
+  "bounds": "flush",
+  "vconcat": [
+    {
+      "height": 60,
+      "mark": {
+        "type": "bar",
+        "stroke": null,
+        "cornerRadiusTopLeft": 4,
+        "cornerRadiusTopRight": 4,
+        "tooltip": true,
+        "color": "#969696"
+      },
+      "encoding": {
+        "x": {
+          "field": "__0__",
+          "axis": null
+        },
+        "y": {
+          "field": "__3__",
+          "aggregate": "mean",
+          "axis": null
+        }
+      }
+    },
+    {
+      "spacing": 0,
+      "bounds": "flush",
+      "hconcat": [
+        {
+          "mark": {
+            "type": "point",
+            "stroke": "white",
+            "tooltip": true
+          },
+          "encoding": {
+            "y": {
+              "field": "__2__",
+              "type": "ordinal",
+              "title": "",
+              "sort": {
+                "field": "__1__"
+              },
+              "axis": {
+                "domain": false,
+                "ticks": false,
+                "labels": true,
+                "labelAngle": 0,
+                "labelPadding": 5
+              }
+            },
+            "x": {
+              "field": "__0__",
+              "type": "ordinal",
+              "title": "",
+              "axis": {
+                "domain": false,
+                "ticks": false,
+                "labels": true,
+                "labelAngle": 0
+              }
+            },
+            "size": {
+              "field": "__3__",
+              "type": "quantitative",
+              "aggregate": "mean",
+              "bin": {
+                "binned": true,
+                "step": 15
+              },
+              "scale": {
+                "type": "quantile",
+                "range": [
+                  15,
+                  30,
+                  45,
+                  60,
+                  75,
+                  90,
+                  105,
+                  120,
+                  135,
+                  150,
+                  165,
+                  180,
+                  195,
+                  210,
+                  225,
+                  240,
+                  255,
+                  260
+                ]
+              }
+            },
+            "color": {
+              "aggregate": "mean",
+              "field": "__3__",
+              "scale": {
+                "scheme": "category20c"
+              },
+              "sort": "ascending",
+              "type": "quantitative",
+              "title": "Mean Inbound Calls",
+              "legend": false
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "bar",
+            "stroke": null,
+            "color": "#bcbddc",
+            "opacity": 0.9,
+            "cornerRadiusTopRight": 4,
+            "cornerRadiusBottomRight": 4,
+            "tooltip": true
+          },
+          "width": 60,
+          "encoding": {
+            "y": {
+              "field": "__2__",
+              "type": "nominal",
+              "sort": {
+                "field": "__1__"
+              },
+              "axis": null
+            },
+            "x": {
+              "field": "__3__",
+              "type": "quantitative",
+              "aggregate": "mean",
+              "axis": null
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "resolve": {
+    "legend": {
+      "color": "independent",
+      "size": "independent"
+    }
+  }
+}
