@@ -1,110 +1,112 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "usermeta": {
-      "deneb": {
-        "build": "1.0.0.157",
-        "metaVersion": 1,
-        "provider": "vegaLite"
-      },
-      "interactivity": {
-        "tooltip": true,
-        "contextMenu": true,
-        "selection": true,
-        "dataPointLimit": 50
-      },
-      "information": {
-        "name": "Fanciful Lollipop",
-        "description": "Lollipop chart where the lolly changes in size and in transparency based on the value of the data point.",
-        "author": "Kerry Kolosko",
-        "url": "https://kerrykolosko.com/portfolio/fanciful-lollipop/",
-        "uuid": "d126e415-0a80-4812-9d6e-6229e0731af8",
-        "generated": "2022-02-02T13:07:33.139Z"
-      },
-      "dataset": [
-        {
-          "key": "__0__",
-          "name": "Category",
-          "description": "",
-          "type": "text",
-          "kind": "column"
-        },
-        {
-          "key": "__1__",
-          "name": "Value",
-          "description": "",
-          "type": "numeric",
-          "kind": "measure"
-        }
-      ]
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.4.0.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.4.0"
     },
-    "config": {
-      "autosize": {
-        "type": "fit",
-        "contains": "padding"
-      },
-      "view": {"stroke": "transparent"}
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": true,
+      "highlight": false,
+      "dataPointLimit": 50
     },
-    "data": {"name": "dataset"},
-    "encoding": {
-      "y": {
-        "field": "__0__",
-        "type": "nominal",
-        "sort": "-x",
-        "axis": {
-          "domain": false,
-          "title": null,
-          "ticks": false,
-          "labelFont": "Candara",
-          "labelFontSize": 16,
-          "labelPadding": 10,
-          "labelColor": "#605e5c"
-        }
-      },
-      "x": {
-        "field": "__1__",
-        "type": "quantitative",
-        "axis": null
-      },
-      "opacity": {
-        "condition": {
-          "test": {
-            "field": "__selected__",
-            "equal": "off"
-          },
-          "value": 0.3
-        }
-      },
-      "color": {"value": "#d9b300"}
+    "information": {
+      "name": "Fanciful Lollipop",
+      "description": "Template inspired by Kerry Kolosko, adjustments made to the template.",
+      "author": "Mike Carlo",
+      "uuid": "6cfa784d-0072-49fa-b968-e31e815f7933",
+      "generated": "2022-09-12T05:40:35.615Z",
+      "previewImageBase64PNG": "data:image/png;base64,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"
     },
-    "layer": [
+    "dataset": [
       {
-        "mark": {
-          "type": "rule",
-          "tooltip": true,
-          "strokeWidth": 2,
-          "opacity": 0.5
-        }
+        "key": "__0__",
+        "name": "Category",
+        "description": "Text column with different categories",
+        "type": "text",
+        "kind": "column"
       },
       {
-        "mark": {
-          "type": "circle",
-          "tooltip": true,
-          "size": 200
-        },
-        "encoding": {
-          "size": {
-            "field": "__1__",
-            "scale": {
-              "range": [100, 700]
-            },
-            "legend": false
-          },
-          "opacity": {
-            "field": "__1__",
-            "sort": "-x",
-            "legend": false
-          }
-        }
+        "key": "__1__",
+        "name": "Number",
+        "description": "Aggregated values for each listed category",
+        "type": "numeric",
+        "kind": "measure"
       }
     ]
-  }
+  },
+  "config": {
+    "autosize": {
+      "type": "fit",
+      "contains": "padding"
+    },
+    "view": {"stroke": "transparent"}
+  },
+  "data": {"name": "dataset"},
+  "encoding": {
+    "y": {
+      "field": "__0__",
+      "type": "nominal",
+      "sort": "-x",
+      "axis": {
+        "domain": false,
+        "title": null,
+        "ticks": false,
+        "labelFont": "Candara",
+        "labelFontSize": 16,
+        "labelPadding": 10,
+        "labelColor": "#605e5c"
+      }
+    },
+    "x": {
+      "field": "__1__",
+      "type": "quantitative",
+      "axis": null
+    },
+    "opacity": {
+      "condition": {
+        "test": {
+          "field": "__selected__",
+          "equal": "off"
+        },
+        "value": 0.1
+      }
+    },
+    "color": {"value": "#d9b300"}
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "tooltip": true,
+        "strokeWidth": 2,
+        "opacity": 0.5
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "tooltip": true,
+        "size": 200
+      },
+      "encoding": {
+        "size": {
+          "field": "__1__",
+          "scale": {
+            "range": [100, 700]
+          },
+          "legend": null
+        },
+        "opacity": {
+          "field": "__1__",
+          "sort": "x",
+          "legend": null
+        }
+      }
+    }
+  ]
+}

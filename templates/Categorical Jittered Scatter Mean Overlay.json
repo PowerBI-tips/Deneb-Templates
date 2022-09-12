@@ -1,0 +1,115 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.1.0.0",
+        "metaVersion": 1,
+        "provider": "vegaLite",
+        "providerVersion": "5.2.0"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Categorical Jitter Scatter Mean Overlay",
+        "description": "[No Description Provided]",
+        "author": "Kerry Kolosko",
+        "uuid": "ed8a7526-b721-4ddf-97a4-ac8aa5c91ac2",
+        "generated": "2022-02-09T05:26:43.193Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "Index",
+          "description": "",
+          "type": "numeric",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "Category",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__2__",
+          "name": "Value",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      },
+      "font": "Segoe UI",
+      "view": {"stroke": null},
+      "axis": {"grid": false}
+    },
+    "data": {"name": "dataset"},
+    "transform": [
+      {
+        "calculate": "random()",
+        "as": "Jitter"
+      }
+    ],
+    "width": {"step": 50},
+    "encoding": {
+      "x": {
+        "field": "__1__",
+        "type": "ordinal",
+        "axis": {"title": ""}
+      },
+      "y": {
+        "field": "__2__",
+        "type": "quantitative",
+        "axis": {"title": ""},
+        "scale": {"zero": false}
+      },
+      "color": {
+        "field": "__1__",
+        "type": "nominal",
+        "scale": {"scheme": "plasma"},
+        "legend": null
+      }
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "point",
+          "tooltip": true,
+          "filled": true,
+          "size": 70,
+          "opacity": 0.7
+        },
+        "encoding": {
+          "xOffset": {
+            "field": "Jitter",
+            "type": "quantitative"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "tick",
+          "thickness": 2,
+          "size": 30
+        },
+        "encoding": {
+          "y": {
+            "field": "__2__",
+            "type": "quantitative",
+            "aggregate": "mean"
+          },
+          "color": {"value": "black"}
+        }
+      }
+    ]
+  }

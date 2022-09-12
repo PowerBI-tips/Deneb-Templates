@@ -1,0 +1,228 @@
+{
+    "$schema": "https://vega.github.io/schema/vega/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.1.0.0",
+        "metaVersion": 1,
+        "provider": "vega",
+        "providerVersion": "5.21.0"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Radial Tree",
+        "description": "https://kerrykolosko.com/portfolio/radial-tree/",
+        "author": "Kerry Kolosko",
+        "uuid": "36b03d45-b9af-40f2-b154-bc27cba35ddf",
+        "generated": "2022-03-27T11:36:49.950Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "id",
+          "description": "node id",
+          "type": "numeric",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "label",
+          "description": "label name",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__2__",
+          "name": "children",
+          "description": "number of children",
+          "type": "numeric",
+          "kind": "measure"
+        },
+        {
+          "key": "__3__",
+          "name": "parentid",
+          "description": "parent node id",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      }
+    },
+    "width": 720,
+    "height": 720,
+    "padding": 5,
+    "autosize": "none",
+    "signals": [
+      {"name": "labels", "value": true},
+      {"name": "radius", "value": 280},
+      {"name": "extent", "value": 360},
+      {"name": "rotate", "value": 0},
+      {
+        "name": "layout",
+        "value": "cluster"
+      },
+      {
+        "name": "links",
+        "value": "diagonal"
+      },
+      {
+        "name": "originX",
+        "update": "width / 2"
+      },
+      {
+        "name": "originY",
+        "update": "height / 2"
+      }
+    ],
+    "data": [
+      {
+        "name": "dataset",
+        "transform": [
+          {
+            "type": "stratify",
+            "key": "__0__",
+            "parentKey": "__3__"
+          },
+          {
+            "type": "tree",
+            "method": {
+              "signal": "layout"
+            },
+            "size": [
+              1,
+              {"signal": "radius"}
+            ],
+            "as": [
+              "alpha",
+              "radius",
+              "depth",
+              "children"
+            ]
+          },
+          {
+            "type": "formula",
+            "expr": "(rotate + extent * datum.alpha + 270) % 360",
+            "as": "angle"
+          },
+          {
+            "type": "formula",
+            "expr": "PI * datum.angle / 180",
+            "as": "radians"
+          },
+          {
+            "type": "formula",
+            "expr": "inrange(datum.angle, [90, 270])",
+            "as": "leftside"
+          },
+          {
+            "type": "formula",
+            "expr": "originX + datum.radius * cos(datum.radians)",
+            "as": "x"
+          },
+          {
+            "type": "formula",
+            "expr": "originY + datum.radius * sin(datum.radians)",
+            "as": "y"
+          }
+        ]
+      },
+      {
+        "name": "links",
+        "source": "dataset",
+        "transform": [
+          {"type": "treelinks"},
+          {
+            "type": "linkpath",
+            "shape": {"signal": "links"},
+            "orient": "radial",
+            "sourceX": "source.radians",
+            "sourceY": "source.radius",
+            "targetX": "target.radians",
+            "targetY": "target.radius"
+          }
+        ]
+      }
+    ],
+    "scales": [
+      {
+        "name": "color",
+        "type": "linear",
+        "range": {"scheme": "magma"},
+        "domain": {
+          "data": "dataset",
+          "field": "depth"
+        },
+        "zero": true
+      }
+    ],
+    "marks": [
+      {
+        "type": "path",
+        "from": {"data": "links"},
+        "encode": {
+          "update": {
+            "x": {"signal": "originX"},
+            "y": {"signal": "originY"},
+            "path": {"field": "path"},
+            "stroke": {"value": "#ccc"}
+          }
+        }
+      },
+      {
+        "type": "symbol",
+        "from": {"data": "dataset"},
+        "encode": {
+          "enter": {
+            "size": {"value": 100},
+            "stroke": {"value": "#fff"}
+          },
+          "update": {
+            "x": {"field": "x"},
+            "y": {"field": "y"},
+            "fill": {
+              "scale": "color",
+              "field": "depth"
+            }
+          }
+        }
+      },
+      {
+        "type": "text",
+        "from": {"data": "dataset"},
+        "encode": {
+          "enter": {
+            "text": {"field": "__1__"},
+            "fontSize": {"value": 9},
+            "baseline": {
+              "value": "middle"
+            }
+          },
+          "update": {
+            "x": {"field": "x"},
+            "y": {"field": "y"},
+            "dx": {
+              "signal": "(datum.leftside ? -1 : 1) * 6"
+            },
+            "angle": {
+              "signal": "datum.leftside ? datum.angle - 180 : datum.angle"
+            },
+            "align": {
+              "signal": "datum.leftside ? 'right' : 'left'"
+            },
+            "opacity": {
+              "signal": "labels ? 1 : 0"
+            }
+          }
+        }
+      }
+    ]
+  }

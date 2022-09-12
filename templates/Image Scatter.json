@@ -1,0 +1,79 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.1.0.0",
+        "metaVersion": 1,
+        "provider": "vegaLite",
+        "providerVersion": "5.2.0"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Image Scatter",
+        "description": "[No Description Provided]",
+        "author": "Kerry Kolosko",
+        "uuid": "99d09321-a3bc-4ace-a4da-02529c0cfcdd",
+        "generated": "2022-03-27T10:18:14.429Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "Year",
+          "description": "",
+          "type": "dateTime",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "Image",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__2__",
+          "name": "Order (Y)",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      }
+    },
+    "data": {"name": "dataset"},
+    "mark": {
+      "type": "image",
+      "width": 50,
+      "height": 50,
+      "tooltip": true
+    },
+    "encoding": {
+      "x": {
+        "field": "__0__",
+        "type": "temporal",
+        "axis": {
+          "titleFontSize": 20,
+          "labelFontSize": 16
+        }
+      },
+      "y": {
+        "field": "__2__",
+        "type": "quantitative",
+        "axis": null
+      },
+      "url": {
+        "field": "__1__",
+        "type": "nominal"
+      }
+    }
+  }

@@ -1,0 +1,184 @@
+{
+    "$schema": "https://vega.github.io/schema/vega/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.1.0.0",
+        "metaVersion": 1,
+        "provider": "vega",
+        "providerVersion": "5.21.0"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Tidy Tree Area",
+        "description": "[No Description Provided]",
+        "author": "Kerry Kolosko",
+        "uuid": "b130beef-2010-47b2-83e7-1676b4c2301f",
+        "generated": "2022-04-10T06:40:29.708Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "id",
+          "description": "",
+          "type": "numeric",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "label",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__2__",
+          "name": "Size",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__3__",
+          "name": "Children",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        },
+        {
+          "key": "__4__",
+          "name": "parentid",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        },
+        {
+          "key": "__5__",
+          "name": "Width",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      }
+    },
+    "data": [
+      {
+        "name": "dataset",
+        "transform": [
+          {
+            "key": "__0__",
+            "parentKey": "__4__",
+            "type": "stratify"
+          },
+          {
+            "method": "tidy",
+            "separation": false,
+            "as": [
+              "y",
+              "x",
+              "depth",
+              "__3__"
+            ],
+            "size": [
+              {"signal": "height"},
+              {"signal": "width - 100"}
+            ],
+            "type": "tree"
+          }
+        ]
+      },
+      {
+        "name": "links",
+        "source": "dataset",
+        "transform": [
+          {"type": "treelinks"},
+          {
+            "shape": "diagonal",
+            "type": "linkpath",
+            "orient": "horizontal"
+          }
+        ]
+      }
+    ],
+    "padding": 5,
+    "marks": [
+      {
+        "encode": {
+          "update": {
+            "stroke": {"value": "#ccc"},
+            "path": {"field": "path"}
+          }
+        },
+        "from": {"data": "links"},
+        "type": "path"
+      },
+      {
+        "encode": {
+          "update": {
+            "x": {"field": "x"},
+            "fill": {
+              "field": "__4__",
+              "scale": "color"
+            },
+            "y": {"field": "y"}
+          },
+          "enter": {
+            "stroke": {"value": "#fff"},
+            "size": {
+              "field": "__2__",
+              "mult": 5
+            },
+            "opacity": {"value": 0.5}
+          }
+        },
+        "from": {"data": "dataset"},
+        "type": "symbol"
+      },
+      {
+        "encode": {
+          "update": {
+            "align": {
+              "signal": "datum['__3__'] ? 'right' : 'left'"
+            },
+            "x": {"field": "x"},
+            "dx": {
+              "signal": "datum['__3__'] ? -7 : 7"
+            },
+            "opacity": {"value": 1},
+            "y": {"field": "y"}
+          },
+          "enter": {
+            "fontSize": {"value": 9},
+            "text": {"field": "__1__"},
+            "baseline": {
+              "value": "middle"
+            }
+          }
+        },
+        "from": {"data": "dataset"},
+        "type": "text"
+      }
+    ],
+    "scales": [
+      {
+        "name": "color",
+        "zero": true,
+        "range": {"scheme": "plasma"},
+        "domain": {
+          "data": "dataset",
+          "field": "depth"
+        },
+        "type": "linear"
+      }
+    ]
+  }

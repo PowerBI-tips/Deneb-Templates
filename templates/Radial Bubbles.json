@@ -1,0 +1,262 @@
+{
+    "$schema": "https://vega.github.io/schema/vega/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.1.0.0",
+        "metaVersion": 1,
+        "provider": "vega",
+        "providerVersion": "5.21.0"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Radial Bubbles Tree",
+        "description": "[No Description Provided]",
+        "author": "Kerry Kolosko",
+        "uuid": "5ddb5c82-68a6-4260-9f0e-d6ce70325c72",
+        "generated": "2022-04-12T13:04:26.207Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "label",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "id",
+          "description": "",
+          "type": "numeric",
+          "kind": "column"
+        },
+        {
+          "key": "__2__",
+          "name": "children",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        },
+        {
+          "key": "__3__",
+          "name": "Size",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        },
+        {
+          "key": "__4__",
+          "name": "parentid",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        },
+        {
+          "key": "__5__",
+          "name": "Width",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      }
+    },
+    "data": [
+      {
+        "name": "dataset",
+        "transform": [
+          {
+            "type": "stratify",
+            "key": "__1__",
+            "parentKey": "__4__"
+          },
+          {
+            "type": "tree",
+            "method": {
+              "signal": "layout"
+            },
+            "size": [
+              1,
+              {"signal": "radius"}
+            ],
+            "as": [
+              "alpha",
+              "radius",
+              "depth",
+              "__2__"
+            ]
+          },
+          {
+            "type": "formula",
+            "expr": "(rotate + extent * datum.alpha + 270) % 360",
+            "as": "angle"
+          },
+          {
+            "type": "formula",
+            "expr": "PI * datum.angle / 180",
+            "as": "radians"
+          },
+          {
+            "type": "formula",
+            "expr": "inrange(datum.angle, [90, 270])",
+            "as": "leftside"
+          },
+          {
+            "type": "formula",
+            "expr": "originX + datum.radius * cos(datum.radians)",
+            "as": "x"
+          },
+          {
+            "type": "formula",
+            "expr": "originY + datum.radius * sin(datum.radians)",
+            "as": "y"
+          }
+        ]
+      },
+      {
+        "name": "links",
+        "source": "dataset",
+        "transform": [
+          {"type": "treelinks"},
+          {
+            "type": "linkpath",
+            "shape": {"signal": "links"},
+            "orient": "radial",
+            "sourceX": "source.radians",
+            "sourceY": "source.radius",
+            "targetX": "target.radians",
+            "targetY": "target.radius"
+          }
+        ]
+      },
+      {
+        "name": "circles",
+        "source": "dataset",
+        "transform": [
+          {
+            "type": "filter",
+            "expr": "datum['__2__'] >= 0"
+          }
+        ]
+      },
+      {
+        "name": "bars",
+        "source": "dataset",
+        "transform": [
+          {
+            "type": "filter",
+            "expr": "datum['__2__'] == 0"
+          }
+        ]
+      }
+    ],
+    "signals": [
+      {"name": "labels", "value": true},
+      {"name": "radius", "value": 280},
+      {"name": "extent", "value": 360},
+      {"name": "rotate", "value": 0},
+      {
+        "name": "layout",
+        "value": "cluster"
+      },
+      {
+        "name": "links",
+        "value": "diagonal"
+      },
+      {
+        "name": "originX",
+        "update": "width / 2"
+      },
+      {
+        "name": "originY",
+        "update": "height / 2"
+      }
+    ],
+    "scales": [
+      {
+        "name": "color",
+        "type": "linear",
+        "range": {"scheme": "category20"},
+        "domain": {
+          "data": "dataset",
+          "field": "__4__"
+        },
+        "zero": true
+      }
+    ],
+    "marks": [
+      {
+        "type": "path",
+        "from": {"data": "links"},
+        "encode": {
+          "update": {
+            "x": {"signal": "originX"},
+            "y": {"signal": "originY"},
+            "path": {"field": "path"},
+            "stroke": {"value": "#ccc"}
+          }
+        }
+      },
+      {
+        "encode": {
+          "update": {
+            "x": {"field": "x"},
+            "fill": {
+              "field": "__4__",
+              "scale": "color"
+            },
+            "y": {"field": "y"}
+          },
+          "enter": {
+            "stroke": {"value": "#fff"},
+            "size": {
+              "field": "__3__",
+              "mult": 400
+            },
+            "opacity": {"value": 0.5}
+          }
+        },
+        "from": {"data": "circles"},
+        "type": "symbol"
+      },
+      {
+        "type": "text",
+        "from": {"data": "dataset"},
+        "encode": {
+          "enter": {
+            "text": {"field": "__0__"},
+            "fontSize": {"value": 9},
+            "baseline": {
+              "value": "middle"
+            }
+          },
+          "update": {
+            "x": {"field": "x"},
+            "y": {"field": "y"},
+            "dx": {
+              "signal": "(datum.leftside ? -1 : 1) * 6"
+            },
+            "angle": {
+              "signal": "datum.leftside ? datum.angle - 180 : datum.angle"
+            },
+            "align": {
+              "signal": "datum.leftside ? 'right' : 'left'"
+            },
+            "opacity": {
+              "signal": "labels ? 1 : 0"
+            }
+          }
+        }
+      }
+    ]
+  }

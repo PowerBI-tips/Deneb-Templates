@@ -1,0 +1,149 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.1.0.0",
+        "metaVersion": 1,
+        "provider": "vegaLite",
+        "providerVersion": "5.2.0"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Pattern Area between Lines",
+        "description": "[No Description Provided]",
+        "author": "Kerry Kolosko",
+        "uuid": "a850bd46-63db-4fd4-95bb-c4f5ac94b103",
+        "generated": "2022-03-27T10:52:37.149Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "X-Value",
+          "description": "",
+          "type": "numeric",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "Category 1",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        },
+        {
+          "key": "__2__",
+          "name": "Category 2",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      },
+      "view": {
+        "stroke": "grey",
+        "fill": "white"
+      },
+      "font": "courier",
+      "bar": {"color": "black"},
+      "axis": {
+        "domain": true,
+        "labelColor": "black",
+        "labelFontSize": 12,
+        "labelPadding": 5,
+        "ticks": false,
+        "tickCount": 10,
+        "titleFontSize": 14,
+        "titleFontWeight": "regular",
+        "titleColor": "black",
+        "gridDash": [1, 5],
+        "gridColor": "grey"
+      }
+    },
+    "data": {"name": "dataset"},
+    "layer": [
+      {
+        "mark": {
+          "type": "area",
+          "fill": {
+            "expr": "pbiPatternSVG('circles-2-70', 'white', 'orange')"
+          },
+          "opacity": 0.7
+        },
+        "encoding": {
+          "y": {
+            "field": "__1__",
+            "type": "quantitative"
+          },
+          "y2": {
+            "field": "__2__",
+            "type": "quantitative"
+          },
+          "x": {
+            "field": "__0__",
+            "type": "quantitative"
+          }
+        }
+      },
+      {
+        "mark": "line",
+        "encoding": {
+          "color": {
+            "datum": "Female",
+            "scale": {
+              "range": [
+                "black",
+                "firebrick"
+              ]
+            }
+          },
+          "x": {
+            "field": "__0__",
+            "type": "quantitative",
+            "title": "__0__"
+          },
+          "y": {
+            "field": "__2__",
+            "type": "quantitative",
+            "title": "Height (cm)",
+            "axis": {
+              "format": "f",
+              "tickCount": 3
+            }
+          }
+        }
+      },
+      {
+        "mark": "line",
+        "encoding": {
+          "color": {
+            "datum": "Males",
+            "scale": {
+              "range": [
+                "black",
+                "firebrick"
+              ]
+            }
+          },
+          "x": {
+            "field": "__0__",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "__1__",
+            "type": "quantitative",
+            "scale": {"zero": false}
+          }
+        }
+      }
+    ]
+  }

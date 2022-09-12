@@ -1,0 +1,148 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.3.0.0",
+        "metaVersion": 1,
+        "provider": "vegaLite",
+        "providerVersion": "5.2.0"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": false,
+        "highlight": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Vibes",
+        "description": "[No Description Provided]",
+        "author": "Kerry Kolosko",
+        "uuid": "a08beec9-c70e-4c18-a2fd-3609cba13175",
+        "generated": "2022-07-10T09:59:08.757Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "Year",
+          "description": "",
+          "type": "numeric",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "Category",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__2__",
+          "name": "Measure",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "padding": 0,
+      "view": {"stroke": "transparent"},
+      "facet": {"spacing": 20},
+      "header": {
+        "title": null,
+        "labelAngle": 0,
+        "labelAnchor": "end",
+        "labelOrient": "top",
+        "labelPadding": -19,
+        "labelFontSize": 12,
+        "labelFontWeight": 500
+      },
+      "font": "Segoe UI",
+      "area": {
+        "fill": {
+          "field": "location",
+          "type": "nominal",
+          "legend": null
+        },
+        "interpolate": "monotone",
+        "stroke": "black"
+      },
+      "axis": {
+        "domain": false,
+        "grid": false,
+        "labelFontSize": 12,
+        "ticks": false,
+        "tickCount": 5,
+        "titleFontSize": 12,
+        "titleFontWeight": 400,
+        "titleColor": "#605E5C",
+        "offset": 0
+      },
+      "axisY": {"disable": false},
+      "legend": {}
+    },
+    "data": {"name": "dataset"},
+    "bounds": "flush",
+    "spacing": 15,
+    "mark": {
+      "type": "bar",
+      "fillOpacity": 1,
+      "strokeOpacity": 1,
+      "strokeWidth": 1,
+      "cornerRadius": 10
+    },
+    "width": 700,
+    "height": 30,
+    "encoding": {
+      "x": {
+        "title": "Year",
+        "field": "Year",
+        "type": "quantitative",
+        "axis": {
+          "format": "f",
+          "labelAngle": 0,
+          "labelOverlap": false
+        }
+      },
+      "y": {
+        "field": "Total",
+        "type": "quantitative",
+        "stack": "center",
+        "scale": {"range": [20, -40]},
+        "axis": {
+          "title": null,
+          "values": [0],
+          "domain": false,
+          "labels": false,
+          "ticks": false
+        }
+      },
+      "row": {
+        "field": "Genre",
+        "type": "nominal",
+        "title": "Genre",
+        "header": {
+          "title": null,
+          "labelAngle": 0,
+          "labelOrient": "right",
+          "labelBaseline": "line-bottom",
+          "labelAlign": "right",
+          "labelAnchor": "start",
+          "labelPadding": 0,
+          "titlePadding": 0
+        },
+        "sort": {
+          "field": "Genre",
+          "op": "max",
+          "order": "ascending"
+        }
+      },
+      "fill": {
+        "field": "Genre",
+        "type": "nominal",
+        "legend": null,
+        "scale": {"scheme": "plasma"}
+      }
+    }
+  }

@@ -1,0 +1,177 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.1.0.0",
+        "metaVersion": 1,
+        "provider": "vegaLite",
+        "providerVersion": "5.2.0"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Square Plot",
+        "description": "[No Description Provided]",
+        "author": "Kerry Kolosko",
+        "uuid": "0485d2c9-9ba3-4814-861f-9bfe8c8c5b12",
+        "generated": "2022-02-14T12:51:19.305Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "Attribute",
+          "description": "",
+          "type": "text",
+          "kind": "column",
+          "namePlaceholder": "Attribute"
+        },
+        {
+          "key": "__1__",
+          "name": "Answer",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__2__",
+          "name": "Value",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      },
+      "view": {"stroke": "transparent"},
+      "font": "Segoe UI",
+      "arc": {},
+      "area": {
+        "line": true,
+        "opacity": 0.6
+      },
+      "bar": {},
+      "line": {
+        "strokeWidth": 3,
+        "strokeCap": "round",
+        "strokeJoin": "round"
+      },
+      "path": {},
+      "point": {
+        "filled": true,
+        "size": 75
+      },
+      "rect": {},
+      "shape": {},
+      "symbol": {
+        "strokeWidth": 1.5,
+        "size": 50
+      },
+      "text": {
+        "font": "Segoe UI",
+        "fontSize": 12,
+        "fill": "#605E5C"
+      },
+      "axis": {
+        "ticks": false,
+        "grid": false,
+        "domain": false,
+        "labelColor": "#605E5C",
+        "labelFontSize": 12,
+        "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+        "titleColor": "#252423",
+        "titleFontSize": 16,
+        "titleFontWeight": "normal"
+      },
+      "axisQuantitative": {
+        "tickCount": 3,
+        "grid": true,
+        "gridColor": "#C8C6C4",
+        "gridDash": [1, 5],
+        "labelFlush": false
+      },
+      "axisBand": {"tickExtra": true},
+      "axisX": {"labelPadding": 5},
+      "axisY": {"labelPadding": 10},
+      "header": {
+        "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+        "titleFontSize": 16,
+        "titleColor": "#252423",
+        "labelFont": "Segoe UI",
+        "labelFontSize": 13.333333333333332,
+        "labelColor": "#605E5C"
+      },
+      "legend": {
+        "titleFont": "Segoe UI",
+        "titleFontWeight": "bold",
+        "titleColor": "#605E5C",
+        "labelFont": "Segoe UI",
+        "labelFontSize": 13.333333333333332,
+        "labelColor": "#605E5C",
+        "symbolType": "square",
+        "symbolStrokeColor": "transparent",
+        "format": ".0%"
+      }
+    },
+    "data": {"name": "dataset"},
+    "view": {"stroke": null},
+    "mark": {
+      "type": "square",
+      "tooltip": true,
+      "stroke": "navy",
+      "strokeWidth": 0.2,
+      "opacity": 0.8
+    },
+    "encoding": {
+      "x": {
+        "field": "__1__",
+        "type": "nominal",
+        "axis": {
+          "domain": false,
+          "offset": 5,
+          "labelFontWeight": "bold",
+          "labelAngle": 0,
+          "ticks": true,
+          "grid": false,
+          "title": null
+        }
+      },
+      "y": {
+        "field": "__0__",
+        "type": "nominal",
+        "sort": null,
+        "axis": {
+          "domain": false,
+          "offset": 50,
+          "labelFontWeight": "light",
+          "labelAngle": 0,
+          "ticks": false,
+          "grid": true,
+          "title": null
+        }
+      },
+      "size": {
+        "aggregate": "sum",
+        "field": "__2__",
+        "type": "quantitative",
+        "title": "Percentage",
+        "legend": {"offset": 50},
+        "scale": {"range": [0, 500]}
+      },
+      "color": {
+        "field": "__2__",
+        "type": "quantitative",
+        "scale": {
+          "range": ["#3EC1DF", "#252968"]
+        },
+        "legend": null
+      }
+    }
+  }

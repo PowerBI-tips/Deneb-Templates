@@ -1,0 +1,150 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.2.0.1",
+        "metaVersion": 1,
+        "provider": "vegaLite",
+        "providerVersion": "5.2.0"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": false,
+        "highlight": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "100% Stacked Interactive Hover",
+        "description": "[No Description Provided]",
+        "author": "Kerry Kolosko",
+        "uuid": "d9061995-d5bd-4b7f-b1e8-638613a9f571",
+        "generated": "2022-06-26T14:24:45.594Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "Year",
+          "description": "",
+          "type": "numeric",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "Category",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__2__",
+          "name": "Value",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      },
+      "view": {"stroke": "transparent"},
+      "font": "Segoe UI",
+      "arc": {},
+      "area": {
+        "line": false,
+        "opacity": 1
+      },
+      "bar": {},
+      "line": {
+        "strokeWidth": 3,
+        "strokeCap": "round",
+        "strokeJoin": "round"
+      },
+      "path": {},
+      "point": {
+        "filled": true,
+        "size": 75
+      },
+      "rect": {},
+      "shape": {},
+      "symbol": {
+        "strokeWidth": 1.5,
+        "size": 50
+      },
+      "text": {
+        "font": "Segoe UI",
+        "fontSize": 12,
+        "fill": "#605E5C"
+      },
+      "legend": {
+        "titleFont": "Segoe UI",
+        "titleFontWeight": "bold",
+        "titleColor": "#605E5C",
+        "labelFont": "Segoe UI",
+        "labelFontSize": 13.333333333333332,
+        "labelColor": "#605E5C",
+        "symbolType": "circle",
+        "symbolSize": 75
+      }
+    },
+    "data": {"name": "dataset"},
+    "params": [
+      {
+        "name": "genres",
+        "select": {
+          "type": "point",
+          "on": "mouseover",
+          "fields": ["__1__"]
+        },
+        "bind": "legend"
+      }
+    ],
+    "mark": {
+      "type": "area",
+      "interpolate": "monotone",
+      "opacity": 1,
+      "tooltip": true
+    },
+    "encoding": {
+      "x": {
+        "field": "__0__",
+        "type": "ordinal",
+        "axis": {
+          "title": "",
+          "labelAlign": "left",
+          "labelAngle": 0,
+          "labelOffset": 4,
+          "labelPadding": -24,
+          "tickSize": 30,
+          "values": [
+            "1960",
+            "1970",
+            "1980",
+            "1990",
+            "2000",
+            "2010"
+          ]
+        }
+      },
+      "y": {
+        "aggregate": "sum",
+        "field": "__2__",
+        "axis": null,
+        "stack": "normalize"
+      },
+      "color": {
+        "field": "__1__",
+        "scale": {"scheme": "category20"}
+      },
+      "opacity": {
+        "condition": {
+          "param": "genres",
+          "value": 1
+        },
+        "value": 0.2
+      }
+    }
+  }

@@ -1,0 +1,170 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.3.0.0",
+        "metaVersion": 1,
+        "provider": "vegaLite",
+        "providerVersion": "5.2.0"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": false,
+        "highlight": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Lemon",
+        "description": "[No Description Provided]",
+        "author": "Kerry Kolosko",
+        "uuid": "3ed312ec-91cb-47d1-a578-9cbaca67d565",
+        "generated": "2022-07-15T14:13:24.289Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "Column",
+          "description": "No Data Needed",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      },
+      "view": {"stroke": "transparent"},
+      "font": "Segoe UI",
+      "arc": {},
+      "area": {
+        "line": true,
+        "opacity": 0.6
+      },
+      "bar": {},
+      "line": {
+        "strokeWidth": 3,
+        "strokeCap": "round",
+        "strokeJoin": "round"
+      },
+      "path": {},
+      "point": {
+        "filled": true,
+        "size": 75
+      },
+      "rect": {},
+      "shape": {},
+      "symbol": {
+        "strokeWidth": 1.5,
+        "size": 50
+      },
+      "text": {
+        "font": "Segoe UI",
+        "fontSize": 12,
+        "fill": "#605E5C"
+      },
+      "axis": {
+        "ticks": false,
+        "grid": false,
+        "domain": false,
+        "labelColor": "#605E5C",
+        "labelFontSize": 12,
+        "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+        "titleColor": "#252423",
+        "titleFontSize": 16,
+        "titleFontWeight": "normal"
+      },
+      "axisQuantitative": {
+        "tickCount": 3,
+        "grid": true,
+        "gridColor": "#C8C6C4",
+        "gridDash": [1, 5],
+        "labelFlush": false
+      },
+      "axisBand": {"tickExtra": true},
+      "axisX": {"labelPadding": 5},
+      "axisY": {"labelPadding": 10},
+      "header": {
+        "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+        "titleFontSize": 16,
+        "titleColor": "#252423",
+        "labelFont": "Segoe UI",
+        "labelFontSize": 13.333333333333332,
+        "labelColor": "#605E5C"
+      },
+      "legend": {
+        "titleFont": "Segoe UI",
+        "titleFontWeight": "bold",
+        "titleColor": "#605E5C",
+        "labelFont": "Segoe UI",
+        "labelFontSize": 13.333333333333332,
+        "labelColor": "#605E5C",
+        "symbolType": "circle",
+        "symbolSize": 75
+      }
+    },
+    "data": {
+      "values": [
+        {"category": 1, "value": 1},
+        {"category": 1, "value": 1},
+        {"category": 1, "value": 1},
+        {"category": 1, "value": 1},
+        {"category": 1, "value": 1},
+        {"category": 1, "value": 1},
+        {"category": 1, "value": 1},
+        {"category": 1, "value": 1},
+        {"category": 1, "value": 1},
+        {"category": 1, "value": 1}
+      ]
+    },
+    "layer": [
+      {
+        "title": "Lemon",
+        "mark": {
+          "type": "arc",
+          "radius": 0,
+          "radius2": 65,
+          "cornerRadius": 0,
+          "padAngle": 0,
+          "strokeWidth": 5,
+          "stroke": "#E3DF09",
+          "color": "beige"
+        },
+        "encoding": {
+          "theta": {
+            "aggregate": "sum",
+            "field": "value",
+            "type": "quantitative"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "arc",
+          "radius": 1,
+          "radius2": 50,
+          "cornerRadius": 20,
+          "padAngle": 0.02,
+          "color": "#E3DF09"
+        },
+        "encoding": {
+          "theta": {
+            "field": "value",
+            "type": "quantitative"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "arc",
+          "radius": 0,
+          "radius2": 5,
+          "cornerRadius": 50,
+          "padAngle": 0.1,
+          "color": "white"
+        }
+      }
+    ]
+  }

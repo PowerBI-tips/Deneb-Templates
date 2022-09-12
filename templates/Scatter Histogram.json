@@ -1,0 +1,268 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.2.0.1",
+        "metaVersion": 1,
+        "provider": "vegaLite",
+        "providerVersion": "5.2.0"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": false,
+        "highlight": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Scatter Histogram",
+        "description": "[No Description Provided]",
+        "author": "Kerry Kolosko",
+        "uuid": "43f776b5-3c6a-46c6-b2db-58357e8cd775",
+        "generated": "2022-06-08T15:12:51.012Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "Season",
+          "description": "",
+          "type": "numeric",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "Stars",
+          "description": "",
+          "type": "numeric",
+          "kind": "column"
+        },
+        {
+          "key": "__2__",
+          "name": "Votes",
+          "description": "",
+          "type": "numeric",
+          "kind": "column"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      },
+      "view": {"stroke": "transparent"},
+      "font": "Segoe UI",
+      "arc": {},
+      "area": {
+        "line": true,
+        "opacity": 0.6
+      },
+      "bar": {},
+      "line": {
+        "strokeWidth": 3,
+        "strokeCap": "round",
+        "strokeJoin": "round"
+      },
+      "path": {},
+      "point": {
+        "filled": true,
+        "size": 75
+      },
+      "rect": {},
+      "shape": {},
+      "symbol": {
+        "strokeWidth": 1.5,
+        "size": 50
+      },
+      "text": {
+        "font": "Segoe UI",
+        "fontSize": 12,
+        "fill": "#605E5C"
+      },
+      "axis": {
+        "ticks": false,
+        "grid": false,
+        "domain": false,
+        "labelColor": "#605E5C",
+        "labelFontSize": 12,
+        "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+        "titleColor": "#252423",
+        "titleFontSize": 16,
+        "titleFontWeight": "normal"
+      },
+      "axisQuantitative": {
+        "tickCount": 3,
+        "grid": true,
+        "gridColor": "#C8C6C4",
+        "gridDash": [1, 5],
+        "labelFlush": false
+      },
+      "axisBand": {"tickExtra": true},
+      "axisX": {"labelPadding": 5},
+      "axisY": {"labelPadding": 10},
+      "header": {
+        "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+        "titleFontSize": 16,
+        "titleColor": "#252423",
+        "labelFont": "Segoe UI",
+        "labelFontSize": 13.333333333333332,
+        "labelColor": "#605E5C"
+      },
+      "legend": {
+        "titleFont": "Segoe UI",
+        "titleFontWeight": "bold",
+        "titleColor": "#605E5C",
+        "labelFont": "Segoe UI",
+        "labelFontSize": 13.333333333333332,
+        "labelColor": "#605E5C",
+        "symbolType": "circle",
+        "symbolSize": 75
+      }
+    },
+    "data": {"name": "dataset"},
+    "spacing": 15,
+    "bounds": "flush",
+    "vconcat": [
+      {
+        "width": 450,
+        "height": 150,
+        "mark": {
+          "type": "bar",
+          "tooltip": "true"
+        },
+        "encoding": {
+          "x": {
+            "bin": {"maxbins": 20},
+            "field": "__2__",
+            "type": "quantitative",
+            "scale": {
+              "domain": [0, 11000]
+            },
+            "title": "",
+            "axis": ""
+          },
+          "y": {
+            "aggregate": "count",
+            "field": "__1__",
+            "type": "quantitative"
+          }
+        }
+      },
+      {
+        "spacing": 15,
+        "bounds": "flush",
+        "hconcat": [
+          {
+            "width": 450,
+            "height": 250,
+            "layer": [
+              {
+                "mark": {
+                  "type": "point",
+                  "tooltip": "true"
+                },
+                "encoding": {
+                  "x": {
+                    "field": "__2__",
+                    "type": "quantitative",
+                    "scale": {
+                      "domain": [0, 11000]
+                    }
+                  },
+                  "y": {
+                    "field": "__1__",
+                    "type": "quantitative",
+                    "scale": {
+                      "domain": [6, 10]
+                    }
+                  },
+                  "xOffset": {
+                    "field": "__0__"
+                  }
+                }
+              },
+              {
+                "mark": {
+                  "type": "line",
+                  "color": "black",
+                  "strokeWidth": 1,
+                  "strokeDash": [1, 2]
+                },
+                "transform": [
+                  {
+                    "regression": "__1__",
+                    "on": "__2__",
+                    "method": "linear",
+                    "extent": [0, 10000]
+                  }
+                ],
+                "encoding": {
+                  "x": {
+                    "field": "__2__",
+                    "type": "quantitative"
+                  },
+                  "y": {
+                    "field": "__1__",
+                    "type": "quantitative"
+                  }
+                }
+              },
+              {
+                "transform": [
+                  {
+                    "regression": "__1__",
+                    "on": "__2__",
+                    "method": "linear",
+                    "extent": [0, 10000],
+                    "params": true
+                  },
+                  {
+                    "calculate": "'R²: '+format(datum.rSquared, '.2f')",
+                    "as": "R2"
+                  }
+                ],
+                "mark": {
+                  "type": "text",
+                  "color": "firebrick",
+                  "x": "width",
+                  "align": "right",
+                  "y": -5
+                },
+                "encoding": {
+                  "text": {
+                    "type": "nominal",
+                    "field": "R2"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "width": 150,
+            "height": 250,
+            "mark": {
+              "type": "bar",
+              "tooltip": "true"
+            },
+            "encoding": {
+              "y": {
+                "bin": {"maxbins": 20},
+                "field": "__1__",
+                "type": "quantitative",
+                "scale": {
+                  "domain": [6, 10]
+                },
+                "title": "",
+                "axis": ""
+              },
+              "x": {
+                "aggregate": "count",
+                "field": "__2__",
+                "type": "quantitative"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }

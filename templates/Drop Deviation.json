@@ -1,0 +1,250 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.3.0.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.2.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": true,
+      "highlight": true,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "Drop Deviation",
+      "description": "[No Description Provided]",
+      "author": "Kerry Kolosko",
+      "uuid": "2d2a3472-8b93-4ae3-b7e5-c854a96fd1d7",
+      "generated": "2022-08-30T14:31:18.677Z",
+      "previewImageBase64PNG": "data:image/png;base64,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"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Date",
+        "description": "",
+        "type": "dateTime",
+        "kind": "column"
+      },
+      {
+        "key": "__1__",
+        "name": "metric 1",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__2__",
+        "name": "metric 2",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      }
+    ]
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "font": "Segoe UI",
+    "arc": {},
+    "area": {
+      "line": true,
+      "opacity": 0.6
+    },
+    "bar": {},
+    "line": {
+      "strokeWidth": 3,
+      "strokeCap": "round",
+      "strokeJoin": "round"
+    },
+    "path": {},
+    "point": {
+      "filled": true,
+      "size": 75
+    },
+    "rect": {},
+    "shape": {},
+    "symbol": {
+      "strokeWidth": 1.5,
+      "size": 50
+    },
+    "text": {
+      "font": "Segoe UI",
+      "fontSize": 12,
+      "fill": "#605E5C"
+    },
+    "axis": {
+      "ticks": false,
+      "grid": false,
+      "domain": false,
+      "labelColor": "#605E5C",
+      "labelFontSize": 12,
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleColor": "#252423",
+      "titleFontSize": 16,
+      "titleFontWeight": "normal"
+    },
+    "axisQuantitative": {
+      "tickCount": 3,
+      "grid": true,
+      "gridColor": "#C8C6C4",
+      "gridDash": [1, 5],
+      "labelFlush": false
+    },
+    "axisX": {"labelPadding": 5},
+    "axisY": {"labelPadding": 10},
+    "header": {
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleFontSize": 16,
+      "titleColor": "#252423",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 13.333333333333332,
+      "labelColor": "#605E5C"
+    },
+    "legend": {
+      "titleFont": "Segoe UI",
+      "titleFontWeight": "bold",
+      "titleColor": "#605E5C",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 13.333333333333332,
+      "labelColor": "#605E5C",
+      "symbolType": "circle",
+      "symbolSize": 75
+    }
+  },
+  "data": {"name": "dataset"},
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "tooltip": true,
+        "color": "grey",
+        "interpolate": false
+      },
+      "encoding": {
+        "y": {"field": "__1__"},
+        "opacity": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "off"
+            },
+            "value": 0
+          },
+          "value": 1
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "tooltip": true,
+        "color": "grey",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "__1__",
+          "type": "quantitative"
+        },
+        "y2": {"field": "__2__"},
+        "x": {
+          "field": "__0__",
+          "type": "nominal",
+          "axis": null
+        },
+        "color": {
+          "condition": [
+            {
+              "test": "datum['__1__'] < datum['__2__']",
+              "value": "red"
+            }
+          ],
+          "value": "green"
+        },
+        "opacity": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "off"
+            },
+            "value": 0
+          },
+          "value": 1
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "tooltip": true,
+        "size": 60
+      },
+      "encoding": {
+        "y": {"field": "__1__"},
+        "color": {
+          "condition": [
+            {
+              "test": "datum['__1__'] < datum['__2__']",
+              "value": "red"
+            }
+          ],
+          "value": "green"
+        },
+        "opacity": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "off"
+            },
+            "value": 0
+          },
+          "value": 1
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "tick",
+        "tooltip": true,
+        "size": 10
+      },
+      "encoding": {
+        "y": {"field": "__2__"},
+        "color": {
+          "condition": [
+            {
+              "test": "datum['__1__'] < datum['__2__']",
+              "value": "grey"
+            }
+          ],
+          "value": "grey"
+        },
+        "opacity": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "off"
+            },
+            "value": 0
+          },
+          "value": 1
+        }
+      }
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "__0__",
+      "type": "nominal",
+      "axis": null
+    },
+    "y": {
+      "type": "quantitative",
+      "axis": {"title": ""}
+    }
+  }
+}

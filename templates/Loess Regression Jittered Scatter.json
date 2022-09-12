@@ -1,0 +1,176 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.2.0.1",
+        "metaVersion": 1,
+        "provider": "vegaLite",
+        "providerVersion": "5.2.0"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": false,
+        "highlight": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Loess Regression",
+        "description": "[No Description Provided]",
+        "author": "Kerry Kolosko",
+        "uuid": "fe8f5a31-7f14-442e-bbff-8ebedbd11414",
+        "generated": "2022-06-08T14:14:31.363Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "Category",
+          "description": "",
+          "type": "numeric",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "Y",
+          "description": "",
+          "type": "numeric",
+          "kind": "column"
+        },
+        {
+          "key": "__2__",
+          "name": "X",
+          "description": "",
+          "type": "numeric",
+          "kind": "column"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      },
+      "view": {"stroke": "transparent"},
+      "font": "Segoe UI",
+      "arc": {},
+      "area": {
+        "line": true,
+        "opacity": 0.6
+      },
+      "bar": {},
+      "line": {
+        "strokeWidth": 3,
+        "strokeCap": "round",
+        "strokeJoin": "round"
+      },
+      "path": {},
+      "point": {
+        "filled": true,
+        "size": 75
+      },
+      "rect": {},
+      "shape": {},
+      "symbol": {
+        "strokeWidth": 1.5,
+        "size": 50
+      },
+      "text": {
+        "font": "Segoe UI",
+        "fontSize": 12,
+        "fill": "#605E5C"
+      },
+      "axis": {
+        "ticks": false,
+        "grid": false,
+        "domain": false,
+        "labelColor": "#605E5C",
+        "labelFontSize": 12,
+        "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+        "titleColor": "#252423",
+        "titleFontSize": 16,
+        "titleFontWeight": "normal"
+      },
+      "axisQuantitative": {
+        "tickCount": 3,
+        "grid": true,
+        "gridColor": "#C8C6C4",
+        "gridDash": [1, 5],
+        "labelFlush": false
+      },
+      "axisBand": {"tickExtra": true},
+      "axisX": {
+        "labelPadding": 5,
+        "labelAngle": 0
+      },
+      "axisY": {"labelPadding": 10},
+      "header": {
+        "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+        "titleFontSize": 16,
+        "titleColor": "#252423",
+        "labelFont": "Segoe UI",
+        "labelFontSize": 13.333333333333332,
+        "labelColor": "#605E5C"
+      },
+      "legend": {
+        "titleFont": "Segoe UI",
+        "titleFontWeight": "bold",
+        "titleColor": "#605E5C",
+        "labelFont": "Segoe UI",
+        "labelFontSize": 13.333333333333332,
+        "labelColor": "#605E5C",
+        "symbolType": "circle",
+        "symbolSize": 75
+      }
+    },
+    "data": {"name": "dataset"},
+    "layer": [
+      {
+        "mark": {
+          "type": "point",
+          "tooltip": true
+        },
+        "encoding": {
+          "x": {
+            "field": "__2__",
+            "type": "ordinal"
+          },
+          "y": {
+            "field": "__1__",
+            "type": "quantitative",
+            "scale": {"domain": [6, 10]}
+          },
+          "xOffset": {"field": "__0__"},
+          "color": {
+            "field": "__0__",
+            "type": "nominal",
+            "scale": {
+              "scheme": "pbiColorNominal"
+            }
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "line",
+          "color": "black"
+        },
+        "transform": [
+          {
+            "loess": "__1__",
+            "on": "__2__"
+          }
+        ],
+        "encoding": {
+          "x": {
+            "field": "__2__",
+            "type": "quantitative",
+            "axis": null
+          },
+          "y": {
+            "field": "__1__",
+            "type": "quantitative"
+          }
+        }
+      }
+    ]
+  }

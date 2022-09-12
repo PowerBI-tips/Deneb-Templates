@@ -1,0 +1,234 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.1.0.0",
+        "metaVersion": 1,
+        "provider": "vegaLite",
+        "providerVersion": "5.2.0"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Slope Multi",
+        "description": "[No Description Provided]",
+        "author": "Kerry Kolosko",
+        "uuid": "69e72603-a974-44f8-901f-1902582afec8",
+        "generated": "2022-02-14T05:54:35.773Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "Attribute",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "Category",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__2__",
+          "name": "Value",
+          "description": "",
+          "type": "numeric",
+          "kind": "column"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      },
+      "view": {"stroke": "transparent"},
+      "axis": {
+        "domain": false,
+        "labelColor": "black",
+        "labelFontSize": 14,
+        "labelPadding": 10,
+        "labelAngle": 0,
+        "ticks": false,
+        "tickCount": 10,
+        "titleFontSize": 14,
+        "titleFontWeight": "bold",
+        "titleColor": "grey",
+        "title": false,
+        "gridDash": [1, 1],
+        "gridColor": "grey",
+        "gridOpacity": 0.5
+      }
+    },
+    "data": {"name": "dataset"},
+    "encoding": {
+      "x": {
+        "field": "__0__",
+        "type": "nominal"
+      },
+      "y": {
+        "field": "__2__",
+        "type": "quantitative",
+        "axis": null
+      },
+      "color": {
+        "field": "__1__",
+        "legend": null,
+        "scale": {
+          "scheme": "pbiColorNominal"
+        }
+      }
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "line",
+          "opacity": 0.5,
+          "strokeWidth": 1
+        },
+        "encoding": {
+          "y": {
+            "datum": 1,
+            "type": "quantitative"
+          },
+          "color": {"value": "lightgrey"}
+        }
+      },
+      {
+        "mark": {
+          "type": "rule",
+          "opacity": 0.5,
+          "strokeWidth": 1
+        },
+        "encoding": {
+          "detail": {
+            "field": "__0__",
+            "type": "nominal"
+          },
+          "y": {
+            "datum": 1,
+            "type": "quantitative"
+          },
+          "color": {"value": "lightgrey"}
+        }
+      },
+      {
+        "mark": {
+          "type": "line",
+          "opacity": 0.5,
+          "strokeWidth": 3
+        }
+      },
+      {
+        "encoding": {
+          "x": {"field": "__0__"},
+          "y": {"field": "__2__"}
+        },
+        "layer": [
+          {
+            "mark": {
+              "type": "point",
+              "shape": "M.83.09,0,.91-.83.09a.59.59,0,0,1,0-.83A.59.59,0,0,1,0-.74a.59.59,0,0,1,.83,0A.59.59,0,0,1,.83.09Z",
+              "filled": true,
+              "opacity": 1,
+              "size": 200,
+              "tooltip": true
+            }
+          },
+          {
+            "transform": [
+              {
+                "window": [
+                  {
+                    "op": "rank",
+                    "as": "rank"
+                  }
+                ],
+                "sort": [
+                  {
+                    "field": "__0__",
+                    "order": "descending"
+                  }
+                ]
+              },
+              {
+                "filter": "datum.rank === 1"
+              },
+              {
+                "calculate": "format(datum['__2__'], '.0%')",
+                "as": "percent"
+              },
+              {
+                "calculate": "datum.percent+', ' +datum['__1__'] ",
+                "as": "label"
+              }
+            ],
+            "mark": {
+              "type": "text",
+              "align": "left",
+              "baseline": "middle",
+              "dx": 5,
+              "dy": -10,
+              "fontWeight": "bold",
+              "fontSize": 12
+            },
+            "encoding": {
+              "text": {
+                "field": "label",
+                "type": "nominal"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "encoding": {
+          "x": {"field": "__0__"},
+          "y": {"field": "__2__"}
+        },
+        "layer": [
+          {
+            "transform": [
+              {
+                "window": [
+                  {
+                    "op": "rank",
+                    "as": "rank"
+                  }
+                ],
+                "sort": [
+                  {
+                    "field": "__0__",
+                    "order": "descending"
+                  }
+                ]
+              },
+              {"filter": "datum.rank > 1"}
+            ],
+            "mark": {
+              "type": "text",
+              "align": "center",
+              "fontWeight": "bold",
+              "fontSize": 12,
+              "dx": 0,
+              "dy": -15
+            },
+            "encoding": {
+              "text": {
+                "field": "__2__",
+                "type": "nominal",
+                "format": ".0%"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }

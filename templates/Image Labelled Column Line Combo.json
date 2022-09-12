@@ -1,0 +1,340 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.1.0.0",
+        "metaVersion": 1,
+        "provider": "vegaLite",
+        "providerVersion": "5.2.0"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Image Labelled Line Column Combo",
+        "description": "[No Description Provided]",
+        "author": "Kerry Kolosko",
+        "uuid": "6762d4e0-9788-4940-b582-78e2307832ba",
+        "generated": "2022-04-10T10:14:49.873Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "Year Sort",
+          "description": "",
+          "type": "numeric",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "Year",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__2__",
+          "name": "Category First",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__3__",
+          "name": "Image",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__4__",
+          "name": "Category",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__5__",
+          "name": "Category Value",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        },
+        {
+          "key": "__6__",
+          "name": "Line Value",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        },
+        {
+          "key": "__7__",
+          "name": "Category True",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      },
+      "view": {"stroke": "transparent"},
+      "font": "Lucida Sans Unicode",
+      "bar": {"color": "#CE6C47"},
+      "axis": {
+        "domain": false,
+        "labelColor": "grey",
+        "labelFontSize": 12,
+        "labelPadding": 5,
+        "labelAngle": 0,
+        "ticks": false,
+        "tickCount": 10,
+        "titleFontSize": 14,
+        "titleFontWeight": "bold",
+        "titleColor": "grey",
+        "gridDash": [1, 1],
+        "gridColor": "grey",
+        "gridOpacity": 0.5
+      },
+      "legend": {
+        "legendX": 10,
+        "legendY": 100,
+        "orient": "top-left",
+        "symbolType": "stroke",
+        "rowPadding": 20,
+        "labelColor": "grey"
+      }
+    },
+    "data": {"name": "dataset"},
+    "spacing": 20,
+    "bounds": "flush",
+    "vconcat": [
+      {
+        "height": 420,
+        "width": 670,
+        "encoding": {
+          "x": {
+            "field": "__1__",
+            "sort": {
+              "field": "__0__",
+              "op": "sum"
+            },
+            "title": ""
+          },
+          "y": {
+            "type": "quantitative",
+            "scale": {"domain": [16, 46]},
+            "title": ""
+          }
+        },
+        "layer": [
+          {
+            "mark": {
+              "type": "bar",
+              "clip": true,
+              "width": {"band": 0.4},
+              "cornerRadius": 1,
+              "tooltip": "true",
+              "color": {
+                "x1": 1,
+                "y1": 1.1,
+                "x2": 1,
+                "y2": 0.2,
+                "gradient": "linear",
+                "stops": [
+                  {
+                    "offset": 0,
+                    "color": "transparent"
+                  },
+                  {
+                    "offset": 1,
+                    "color": "teal"
+                  }
+                ]
+              }
+            },
+            "encoding": {
+              "y": {
+                "aggregate": "sum",
+                "field": "__5__"
+              }
+            }
+          },
+          {
+            "mark": {
+              "type": "line",
+              "strokeWidth": 1,
+              "point": {
+                "color": "orange",
+                "filled": false,
+                "fill": "white",
+                "size": 50,
+                "strokeWidth": 2
+              },
+              "color": "orange",
+              "tooltip": true
+            },
+            "encoding": {
+              "y": {"field": "__6__"},
+              "color": {
+                "datum": "__6__",
+                "scale": {
+                  "range": [
+                    "orange",
+                    "teal"
+                  ]
+                },
+                "type": "nominal"
+              }
+            }
+          },
+          {
+            "mark": {
+              "type": "text",
+              "align": "center",
+              "yOffset": -15,
+              "color": "orange",
+              "size": 12,
+              "tooltip": true
+            },
+            "encoding": {
+              "text": {
+                "field": "__6__",
+                "type": "quantitative"
+              },
+              "y": {"field": "__6__"}
+            }
+          },
+          {
+            "mark": {
+              "type": "text",
+              "align": "center",
+              "yOffset": -15,
+              "color": "teal",
+              "tooltip": true,
+              "size": 12
+            },
+            "encoding": {
+              "text": {
+                "field": "__5__",
+                "type": "quantitative"
+              },
+              "y": {"field": "__5__"},
+              "color": {
+                "datum": "__5__",
+                "scale": {
+                  "domain": [
+                    "__6__",
+                    "__5__"
+                  ],
+                  "range": [
+                    "orange",
+                    "teal"
+                  ]
+                },
+                "type": "nominal"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "height": 100,
+        "width": 670,
+        "encoding": {
+          "x": {
+            "field": "__1__",
+            "axis": null,
+            "sort": {
+              "field": "__0__",
+              "op": "sum"
+            },
+            "title": ""
+          },
+          "y": {
+            "axis": {
+              "labelColor": "transparent"
+            }
+          }
+        },
+        "layer": [
+          {
+            "mark": {
+              "type": "image",
+              "width": 25,
+              "height": 25,
+              "tooltip": true
+            },
+            "encoding": {
+              "y": {"datum": -6},
+              "url": {
+                "field": "__3__",
+                "type": "nominal"
+              }
+            }
+          },
+          {
+            "mark": {"type": "rule"},
+            "encoding": {
+              "y": {"datum": -5},
+              "color": {
+                "condition": {
+                  "test": "datum['__7__'] === 1",
+                  "value": "teal"
+                },
+                "value": "transparent"
+              }
+            }
+          },
+          {
+            "mark": {
+              "type": "text",
+              "color": "teal",
+              "angle": 270,
+              "align": "left",
+              "baseline": "bottom"
+            },
+            "encoding": {
+              "y": {"datum": -5},
+              "text": {
+                "field": "__2__",
+                "type": "nominal"
+              }
+            }
+          },
+          {
+            "mark": {"type": "rule"},
+            "encoding": {
+              "y": {"datum": -1},
+              "color": {
+                "condition": {
+                  "test": "datum['__7__'] === 0",
+                  "value": "teal"
+                },
+                "value": "transparent"
+              }
+            }
+          },
+          {
+            "mark": {
+              "type": "line",
+              "color": "teal"
+            },
+            "encoding": {
+              "y": {"datum": -1},
+              "detail": {
+                "field": "__4__",
+                "type": "nominal"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }

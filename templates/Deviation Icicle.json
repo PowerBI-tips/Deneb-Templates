@@ -1,0 +1,231 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.3.0.0",
+        "metaVersion": 1,
+        "provider": "vegaLite",
+        "providerVersion": "5.2.0"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": true,
+        "highlight": true,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Deviation Icicle",
+        "description": "[No Description Provided]",
+        "author": "Kerry Kolosko",
+        "uuid": "106e4600-6f23-4087-b76b-be9501cff6a9",
+        "generated": "2022-08-28T04:07:34.118Z",
+        "previewImageBase64PNG": "data:image/png;base64,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"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "Date",
+          "description": "",
+          "type": "dateTime",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "metric 1",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        },
+        {
+          "key": "__2__",
+          "name": "metric 2",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "view": {"stroke": "transparent"},
+      "font": "Segoe UI",
+      "arc": {},
+      "area": {
+        "line": true,
+        "opacity": 0.6
+      },
+      "bar": {},
+      "line": {
+        "strokeWidth": 3,
+        "strokeCap": "round",
+        "strokeJoin": "round"
+      },
+      "path": {},
+      "point": {
+        "filled": true,
+        "size": 75
+      },
+      "rect": {},
+      "shape": {},
+      "symbol": {
+        "strokeWidth": 1.5,
+        "size": 50
+      },
+      "text": {
+        "font": "Segoe UI",
+        "fontSize": 12,
+        "fill": "#605E5C"
+      },
+      "axis": {
+        "ticks": false,
+        "grid": false,
+        "domain": false,
+        "labelColor": "#605E5C",
+        "labelFontSize": 12,
+        "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+        "titleColor": "#252423",
+        "titleFontSize": 16,
+        "titleFontWeight": "normal"
+      },
+      "axisQuantitative": {
+        "tickCount": 3,
+        "grid": true,
+        "gridColor": "#C8C6C4",
+        "gridDash": [1, 5],
+        "labelFlush": false
+      },
+      "axisX": {"labelPadding": 5},
+      "axisY": {"labelPadding": 10},
+      "header": {
+        "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+        "titleFontSize": 16,
+        "titleColor": "#252423",
+        "labelFont": "Segoe UI",
+        "labelFontSize": 13.333333333333332,
+        "labelColor": "#605E5C"
+      },
+      "legend": {
+        "titleFont": "Segoe UI",
+        "titleFontWeight": "bold",
+        "titleColor": "#605E5C",
+        "labelFont": "Segoe UI",
+        "labelFontSize": 13.333333333333332,
+        "labelColor": "#605E5C",
+        "symbolType": "circle",
+        "symbolSize": 75
+      }
+    },
+    "data": {"name": "dataset"},
+    "layer": [
+      {
+        "mark": {
+          "type": "line",
+          "tooltip": true,
+          "color": "grey",
+          "interpolate": false
+        },
+        "encoding": {
+          "y": {"field": "__1__"}
+        }
+      },
+      {
+        "mark": {
+          "type": "circle",
+          "tooltip": true,
+          "size": 80,
+          "color": "grey"
+        },
+        "encoding": {
+          "y": {"field": "__1__"},
+          "opacity": {
+            "condition": {
+              "test": {
+                "field": "__selected__",
+                "equal": "on"
+              },
+              "value": 1
+            },
+            "value": 0
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "line",
+          "tooltip": true,
+          "strokeWidth": 1
+        },
+        "encoding": {
+          "y": {
+            "field": "__1__",
+            "type": "quantitative"
+          },
+          "y2": {"field": "__2__"},
+          "x": {
+            "field": "__0__",
+            "type": "nominal",
+            "axis": null
+          },
+          "color": {
+            "condition": [
+              {
+                "test": "datum['__1__'] < datum['__2__']",
+                "value": "red"
+              }
+            ],
+            "value": "green"
+          },
+          "opacity": {
+            "condition": {
+              "test": {
+                "field": "__selected__",
+                "equal": "off"
+              },
+              "value": 0
+            },
+            "value": 1
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "circle",
+          "tooltip": true,
+          "size": 60
+        },
+        "encoding": {
+          "y": {"field": "__2__"},
+          "color": {
+            "condition": [
+              {
+                "test": "datum['__1__'] < datum['__2__']",
+                "value": "red"
+              }
+            ],
+            "value": "green"
+          },
+          "opacity": {
+            "condition": {
+              "test": {
+                "field": "__selected__",
+                "equal": "off"
+              },
+              "value": 0
+            },
+            "value": 1
+          }
+        }
+      }
+    ],
+    "encoding": {
+      "x": {
+        "field": "__0__",
+        "type": "nominal",
+        "axis": null
+      },
+      "y": {
+        "type": "quantitative",
+        "axis": {"title": ""}
+      }
+    }
+  }

@@ -1,0 +1,151 @@
+{
+    "data": {"name": "dataset"},
+    "encoding": {
+      "y": {
+        "field": "Team",
+        "sort": {
+          "field": "Actual Finish"
+        },
+        "type": "nominal",
+        "title": null
+      },
+      "x": {
+        "field": "Actual Finish",
+        "type": "quantitative",
+        "axis": null
+      },
+      "opacity": {
+        "condition": {
+          "test": {
+            "field": "__selected__",
+            "equal": "off"
+          },
+          "value": 0.3
+        },
+        "value": 1
+      }
+    },
+    "layer": [
+      {
+        "transform": [
+          {
+            "filter": "datum.Difference > 0"
+          }
+        ],
+        "mark": {
+          "type": "rect",
+          "height": 10,
+          "color": {
+            "x1": 0,
+            "y1": 1,
+            "x2": 1,
+            "y2": 1,
+            "gradient": "linear",
+            "stops": [
+              {
+                "offset": 0,
+                "color": "white"
+              },
+              {
+                "offset": 1,
+                "color": "navy"
+              }
+            ]
+          },
+          "tooltip": true
+        },
+        "encoding": {
+          "x2": {
+            "field": "Predicted Finish",
+            "type": "quantitative"
+          },
+          "size": {
+            "field": "Absolute Difference",
+            "type": "quantitative"
+          }
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.Difference < 0"
+          }
+        ],
+        "mark": {
+          "type": "rect",
+          "height": 10,
+          "color": {
+            "x1": 1,
+            "y1": 1,
+            "x2": 0,
+            "y2": 1,
+            "gradient": "linear",
+            "stops": [
+              {
+                "offset": 0,
+                "color": "white"
+              },
+              {
+                "offset": 1,
+                "color": "green"
+              }
+            ]
+          },
+          "tooltip": true
+        },
+        "encoding": {
+          "x2": {
+            "field": "Predicted Finish",
+            "type": "quantitative"
+          },
+          "size": {
+            "field": "Absolute Difference",
+            "type": "quantitative"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "circle",
+          "tooltip": true,
+          "color": "navy",
+          "size": 300
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "color": "white",
+          "tooltip": true
+        },
+        "encoding": {
+          "text": {
+            "field": "Actual Finish",
+            "type": "quantitative"
+          }
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.Difference != 0"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "color": "black",
+          "tooltip": true
+        },
+        "encoding": {
+          "x": {
+            "field": "Predicted Finish",
+            "type": "quantitative"
+          },
+          "text": {
+            "field": "Predicted Finish",
+            "type": "quantitative"
+          }
+        }
+      }
+    ]
+  }

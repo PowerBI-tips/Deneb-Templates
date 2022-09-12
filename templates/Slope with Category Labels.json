@@ -1,0 +1,338 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "usermeta": {
+      "deneb": {
+        "build": "1.1.0.0",
+        "metaVersion": 1,
+        "provider": "vegaLite",
+        "providerVersion": "5.2.0"
+      },
+      "interactivity": {
+        "tooltip": true,
+        "contextMenu": true,
+        "selection": false,
+        "dataPointLimit": 50
+      },
+      "information": {
+        "name": "Slope with Series Labels",
+        "description": "[No Description Provided]",
+        "author": "Kerry Kolosko",
+        "uuid": "f7b83fd2-19a2-49e8-bd7e-b37b982b2d4c",
+        "generated": "2022-02-06T12:02:13.247Z"
+      },
+      "dataset": [
+        {
+          "key": "__0__",
+          "name": "Date",
+          "description": "",
+          "type": "dateTime",
+          "kind": "column"
+        },
+        {
+          "key": "__1__",
+          "name": "Category",
+          "description": "",
+          "type": "text",
+          "kind": "column"
+        },
+        {
+          "key": "__2__",
+          "name": "Value",
+          "description": "",
+          "type": "numeric",
+          "kind": "measure"
+        }
+      ]
+    },
+    "config": {
+      "autosize": {
+        "type": "fit",
+        "contains": "padding"
+      },
+      "view": {"stroke": "transparent"}
+    },
+    "data": {"name": "dataset"},
+    "encoding": {
+      "x": {
+        "timeUnit": "yearmonth",
+        "field": "__0__",
+        "type": "temporal",
+        "axis": null
+      },
+      "y": {
+        "field": "__2__",
+        "type": "quantitative",
+        "axis": null
+      },
+      "color": {
+        "field": "__1__",
+        "legend": null,
+        "scale": {"scheme": "plasma"}
+      }
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "line",
+          "interpolate": "bundle",
+          "tension": 0,
+          "strokeWidth": 3
+        }
+      },
+      {
+        "encoding": {
+          "x": {
+            "aggregate": "max",
+            "field": "__0__"
+          },
+          "y": {
+            "aggregate": {
+              "argmax": "__0__"
+            },
+            "field": "__2__"
+          }
+        },
+        "layer": [
+          {
+            "mark": {
+              "type": "rect",
+              "stroke": "grey",
+              "strokeOpacity": 1
+            },
+            "encoding": {
+              "x": {
+                "aggregate": "max",
+                "field": "__0__"
+              },
+              "x2": {
+                "aggregate": "min",
+                "field": "__0__"
+              },
+              "y": {"datum": 0},
+              "y2": {
+                "aggregate": "max",
+                "field": "__2__"
+              },
+              "color": {
+                "value": "transparent"
+              }
+            }
+          },
+          {
+            "mark": {
+              "type": "circle",
+              "size": 50
+            }
+          },
+          {
+            "transform": [
+              {
+                "window": [
+                  {
+                    "op": "rank",
+                    "as": "rank"
+                  }
+                ],
+                "sort": [
+                  {
+                    "field": "__0__",
+                    "order": "descending"
+                  }
+                ]
+              },
+              {
+                "filter": "datum.rank === 1"
+              },
+              {
+                "calculate": "format(datum['__2__'], '.0%')",
+                "as": "percent"
+              },
+              {
+                "calculate": "datum.percent+', ' +datum['__1__'] ",
+                "as": "label"
+              }
+            ],
+            "mark": {
+              "type": "text",
+              "align": "left",
+              "baseline": "middle",
+              "dx": 6,
+              "fontWeight": "bold",
+              "fontSize": 12
+            },
+            "encoding": {
+              "text": {
+                "field": "label",
+                "type": "nominal"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "encoding": {
+          "x": {
+            "aggregate": "min",
+            "field": "__0__"
+          },
+          "y": {
+            "aggregate": {
+              "argmin": "__0__"
+            },
+            "field": "__2__"
+          }
+        },
+        "layer": [
+          {
+            "mark": {
+              "type": "circle",
+              "size": 50
+            }
+          },
+          {
+            "transform": [
+              {
+                "window": [
+                  {
+                    "op": "rank",
+                    "as": "rank"
+                  }
+                ],
+                "sort": [
+                  {
+                    "field": "__0__",
+                    "order": "ascending"
+                  }
+                ]
+              },
+              {
+                "filter": "datum.rank === 1"
+              }
+            ],
+            "mark": {
+              "type": "text",
+              "align": "right",
+              "fontWeight": "bold",
+              "fontSize": 12,
+              "dx": -6
+            },
+            "encoding": {
+              "text": {
+                "field": "__2__",
+                "type": "nominal",
+                "format": ".0%"
+              }
+            }
+          },
+          {
+            "transform": [
+              {
+                "window": [
+                  {
+                    "op": "rank",
+                    "as": "rank"
+                  }
+                ],
+                "sort": [
+                  {
+                    "field": "__0__",
+                    "order": "ascending"
+                  }
+                ]
+              },
+              {
+                "filter": "datum.rank === 1"
+              },
+              {
+                "window": [
+                  {
+                    "op": "rank",
+                    "as": "rank2"
+                  }
+                ],
+                "sort": [
+                  {
+                    "field": "__2__",
+                    "order": "descending"
+                  }
+                ]
+              },
+              {
+                "filter": "datum.rank2 === 1"
+              }
+            ],
+            "mark": {
+              "type": "text",
+              "align": "bottom",
+              "fontWeight": "bold",
+              "fontSize": 12,
+              "dy": 10
+            },
+            "encoding": {
+              "text": {
+                "field": "__0__",
+                "type": "temporal",
+                "timeUnit": "yearmonth"
+              },
+              "y": {"datum": 0},
+              "color": {"value": "black"}
+            }
+          },
+          {
+            "transform": [
+              {
+                "window": [
+                  {
+                    "op": "rank",
+                    "as": "rank"
+                  }
+                ],
+                "sort": [
+                  {
+                    "field": "__0__",
+                    "order": "descending"
+                  }
+                ]
+              },
+              {
+                "filter": "datum.rank === 1"
+              },
+              {
+                "window": [
+                  {
+                    "op": "rank",
+                    "as": "rank2"
+                  }
+                ],
+                "sort": [
+                  {
+                    "field": "__2__",
+                    "order": "descending"
+                  }
+                ]
+              },
+              {
+                "filter": "datum.rank2 === 1"
+              }
+            ],
+            "mark": {
+              "type": "text",
+              "align": "right",
+              "fontWeight": "bold",
+              "fontSize": 12,
+              "dy": 10
+            },
+            "encoding": {
+              "text": {
+                "field": "__0__",
+                "type": "temporal",
+                "timeUnit": "yearmonth"
+              },
+              "y": {"datum": 0},
+              "color": {"value": "black"}
+            }
+          }
+        ]
+      }
+    ]
+  }
