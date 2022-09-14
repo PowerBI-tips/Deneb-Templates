@@ -1,0 +1,631 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.4.0.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.4.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "Enhanced Waterfall",
+      "description": "[No Description Provided]",
+      "author": "Jan Schroeven",
+      "uuid": "89ee6a09-fdad-4200-a675-dde07db9b09b",
+      "generated": "2022-09-14T16:42:22.445Z",
+      "previewImageBase64PNG": "data:image/png;base64,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"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Category",
+        "description": "Select a Categorical value for the x-axis",
+        "type": "text",
+        "kind": "column"
+      },
+      {
+        "key": "__1__",
+        "name": "Measure",
+        "description": "Select a measure that calculates a number for each categorical value",
+        "type": "numeric",
+        "kind": "measure"
+      }
+    ]
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "font": "Segoe UI",
+    "arc": {},
+    "area": {
+      "line": true,
+      "opacity": 0.6
+    },
+    "bar": {},
+    "line": {
+      "strokeWidth": 3,
+      "strokeCap": "round",
+      "strokeJoin": "round"
+    },
+    "path": {},
+    "point": {
+      "filled": true,
+      "size": 75
+    },
+    "rect": {},
+    "shape": {},
+    "symbol": {
+      "strokeWidth": 1.5,
+      "size": 50
+    },
+    "text": {
+      "font": "Segoe UI",
+      "fontSize": 12,
+      "fill": "#605E5C"
+    },
+    "axis": {
+      "ticks": false,
+      "grid": false,
+      "domain": false,
+      "labelColor": "#605E5C",
+      "labelFontSize": 12,
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleColor": "#252423",
+      "titleFontSize": 16,
+      "titleFontWeight": "normal"
+    },
+    "axisQuantitative": {
+      "tickCount": 3,
+      "grid": false,
+      "gridColor": "#C8C6C4",
+      "gridDash": [1, 5],
+      "labelFlush": false
+    },
+    "axisX": {"labelPadding": 5},
+    "axisY": {
+      "labelPadding": 10,
+      "labels": null,
+      "title": null
+    },
+    "header": {
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleFontSize": 16,
+      "titleColor": "#252423",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 13.333333333333332,
+      "labelColor": "#605E5C"
+    },
+    "legend": {
+      "titleFont": "Segoe UI",
+      "titleFontWeight": "bold",
+      "titleColor": "#605E5C",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 13.333333333333332,
+      "labelColor": "#605E5C",
+      "symbolType": "circle",
+      "symbolSize": 75
+    }
+  },
+  "data": {"name": "dataset"},
+  "params": [
+    {"name": "bndWidth", "value": 0.8},
+    {
+      "name": "positiveColor",
+      "value": "#93c4aa"
+    },
+    {
+      "name": "negativeColor",
+      "value": "#f78a64"
+    },
+    {
+      "name": "totalColor",
+      "value": "#2F73B3"
+    }
+  ],
+  "transform": [
+    {
+      "window": [
+        {
+          "op": "sum",
+          "field": "__1__",
+          "as": "sum"
+        }
+      ]
+    },
+    {
+      "window": [
+        {
+          "op": "row_number",
+          "as": "row"
+        }
+      ]
+    },
+    {
+      "window": [
+        {
+          "op": "lead",
+          "field": "__0__",
+          "as": "lead"
+        }
+      ]
+    },
+    {
+      "window": [
+        {
+          "op": "first_value",
+          "field": "__1__",
+          "as": "firstTotal"
+        }
+      ],
+      "frame": [null, null]
+    },
+    {
+      "window": [
+        {
+          "op": "first_value",
+          "field": "__0__",
+          "as": "firstCategory"
+        }
+      ],
+      "frame": [null, null]
+    },
+    {
+      "window": [
+        {
+          "op": "last_value",
+          "field": "__1__",
+          "as": "lastTotal"
+        }
+      ],
+      "frame": [null, null]
+    },
+    {
+      "window": [
+        {
+          "op": "last_value",
+          "field": "__0__",
+          "as": "lastCategory"
+        }
+      ],
+      "frame": [null, null]
+    },
+    {
+      "calculate": "datum.firstTotal+(datum.lastTotal - datum.firstTotal)/2",
+      "as": "CenterDiff"
+    },
+    {
+      "calculate": "datum.lastTotal - datum.firstTotal",
+      "as": "diff"
+    },
+    {
+      "calculate": "datum.diff > 0 ? '+': ''",
+      "as": "diffPlusLabel"
+    },
+    {
+      "calculate": "'(' + datum.diffPlusLabel + format( (datum.lastTotal - datum.firstTotal) / datum.firstTotal,'.2%') +')'",
+      "as": "diffPctLabel"
+    },
+    {
+      "calculate": "datum.lead === null ? datum['__0__'] : datum.lead",
+      "as": "lead"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "count",
+          "field": "datum['__0__']",
+          "as": "LastRow"
+        }
+      ]
+    },
+    {
+      "calculate": "datum.row !== 1 && datum.row !== datum.LastRow && datum['__1__'] > 0 ? '+': ''",
+      "as": "barPlusLabel"
+    },
+    {
+      "calculate": "datum.row === datum.LastRow ? datum['__1__'] : datum.sum",
+      "as": "RollingTotal"
+    },
+    {
+      "calculate": "datum.row === 1 || datum.row === datum.LastRow ? datum['__1__'] : datum.RollingTotal - datum['__1__']",
+      "as": "prev_sum"
+    },
+    {
+      "calculate": "datum.row === 1 || datum.row === datum.LastRow ? 0 : datum.RollingTotal",
+      "as": "this_sum"
+    },
+    {
+      "calculate": "datum['__1__'] > 0 ? 'pos' : 'neg'",
+      "as": "metricState"
+    },
+    {
+      "calculate": "datum.metricState === 'pos' ? 'bottom' : 'top'",
+      "as": "labelBaseStep1"
+    },
+    {
+      "calculate": "datum.metricState === 'neg' && datum.this_sum <= 5 ? 'bottom' : datum.labelBaseStep1",
+      "as": "labelBase"
+    },
+    {
+      "calculate": "datum.metricState === 'pos' ? -4 : 4",
+      "as": "labelOffsetStep1"
+    },
+    {
+      "calculate": "datum.metricState === 'neg' && datum.this_sum <= 5 ? -4 : datum.labelOffsetStep1",
+      "as": "labelOffset"
+    },
+    {
+      "calculate": "abs(datum.diff) > 999994000 ? datum.diffPlusLabel + format(datum.diff/1000000000,'.2f') + 'bn': datum.diff",
+      "as": "diffLabel"
+    },
+    {
+      "calculate": "datum.diff === datum.diffLabel && abs(datum.diff) >= 1000000 && abs(datum.diff) <= 999994000 ? datum.diffPlusLabel + format(datum.diff/1000000,'.2f') + 'M' : datum.diffLabel ",
+      "as": "diffLabel"
+    },
+    {
+      "calculate": "datum.diff === datum.diffLabel && abs(datum.diff) >= 1000 && abs(datum.diff) < 1000000 ? datum.diffPlusLabel + format(datum.diff/1000,'.2f') + 'K' : datum.diffLabel ",
+      "as": "diffLabel"
+    },
+    {
+      "calculate": "datum.diff === datum.diffLabel && abs(datum.diff) < 1000 ? datum.diffLabel : datum.diffLabel ",
+      "as": "diffLabel"
+    },
+    {
+      "calculate": "abs(datum['__1__']) > 999994000 ? datum.barPlusLabel + format(datum['__1__']/1000000000,'.2f') + 'bn': datum['__1__']",
+      "as": "barLabel"
+    },
+    {
+      "calculate": "datum['__1__'] === datum.barLabel && abs(datum['__1__']) >= 1000000 && abs(datum['__1__']) <= 999994000 ? datum.barPlusLabel + format(datum['__1__']/1000000,'.2f') + 'M' : datum.barLabel ",
+      "as": "barLabel"
+    },
+    {
+      "calculate": "datum['__1__'] === datum.barLabel && abs(datum['__1__']) >= 1000 && abs(datum['__1__']) < 1000000 ? datum.barPlusLabel + format(datum['__1__']/1000,'.2f') + 'K' : datum.barLabel ",
+      "as": "barLabel"
+    },
+    {
+      "calculate": "datum['__1__'] === datum.barLabel && abs(datum['__1__']) < 1000 ? datum.barLabel : datum.barLabel ",
+      "as": "barLabel"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "__0__",
+      "type": "ordinal",
+      "sort": null,
+      "axis": {
+        "labelAngle": 0,
+        "title": null,
+        "labelOverlap": true
+      }
+    }
+  },
+  "layer": [
+    {
+      "description": "Hidden bars for setting the x-axis",
+      "mark": {
+        "type": "bar",
+        "opacity": 0
+      },
+      "encoding": {
+        "y": {
+          "datum": 0,
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "description": "horizontal ruler for the starting value",
+      "mark": {
+        "type": "rule",
+        "color": "#c0c0c0",
+        "opacity": 0.5,
+        "strokeWidth": 0.1,
+        "strokeDash": [8, 4],
+        "xOffset": {
+          "expr": "(bandwidth('x')/2*bndWidth)*-1"
+        },
+        "x2Offset": {
+          "expr": "bandwidth('x')/1.5"
+        }
+      },
+      "encoding": {
+        "x": {"field": "firstCategory"},
+        "x2": {"field": "lastCategory"},
+        "y": {
+          "field": "firstTotal",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "description": "horizontal ruler for the end value",
+      "mark": {
+        "type": "rule",
+        "color": "#c0c0c0",
+        "opacity": 0.5,
+        "strokeWidth": 0.1,
+        "strokeDash": [8, 4],
+        "xOffset": {
+          "expr": "(bandwidth('x')/2*bndWidth)*-1"
+        },
+        "x2Offset": {
+          "expr": "bandwidth('x')/1.5"
+        }
+      },
+      "encoding": {
+        "x": {"field": "lastCategory"},
+        "x2": {"field": "lastCategory"},
+        "y": {
+          "field": "lastTotal",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "description": "Waterfall bars",
+      "mark": {
+        "type": "bar",
+        "width": {
+          "expr": "bandwidth('x')*bndWidth"
+        },
+        "tooltip": true
+      },
+      "encoding": {
+        "y": {
+          "field": "prev_sum",
+          "type": "quantitative"
+        },
+        "y2": {"field": "this_sum"},
+        "color": {
+          "condition": [
+            {
+              "test": "datum.row === 1 || datum.row === datum.LastRow",
+              "value": {
+                "expr": "totalColor"
+              }
+            },
+            {
+              "test": "datum['__1__'] < 0",
+              "value": {
+                "expr": "negativeColor"
+              }
+            }
+          ],
+          "value": {
+            "expr": "positiveColor"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "__0__",
+            "type": "nominal",
+            "title": "Category:"
+          },
+          {
+            "field": "__1__",
+            "type": "quantitative",
+            "title": "Value:",
+            "format": "#,0.00",
+            "formatType": "pbiFormat"
+          }
+        ]
+      }
+    },
+    {
+      "description": "Text labels for the bars",
+      "mark": {
+        "type": "text",
+        "baseline": {
+          "expr": "datum.labelBase"
+        },
+        "dy": {
+          "expr": "datum.labelOffset"
+        }
+      },
+      "encoding": {
+        "y": {
+          "field": "RollingTotal",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "barLabel",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "description": "Ruler for the arrow to show the difference between start and end values",
+      "transform": [
+        {
+          "filter": "datum.row === datum.LastRow"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2,
+        "xOffset": {
+          "expr": "bandwidth('x')/1.5"
+        }
+      },
+      "encoding": {
+        "y": {
+          "field": "firstTotal",
+          "type": "quantitative"
+        },
+        "y2": {"field": "__1__"},
+        "color": {
+          "condition": [
+            {
+              "test": "datum.diff <= 0",
+              "value": {
+                "expr": "negativeColor"
+              }
+            }
+          ],
+          "value": {
+            "expr": "positiveColor"
+          }
+        }
+      }
+    },
+    {
+      "description": "Down arrow at the end, only shows when difference is negative",
+      "transform": [
+        {
+          "filter": "datum.row === datum.LastRow"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "shape": "triangle-down",
+        "size": 75,
+        "fill": {
+          "expr": "negativeColor"
+        },
+        "stroke": {
+          "expr": "negativeColor"
+        },
+        "opacity": 1,
+        "xOffset": {
+          "expr": "bandwidth('x')/1.5"
+        },
+        "yOffset": -5
+      },
+      "encoding": {
+        "y": {
+          "field": "lastTotal",
+          "type": "quantitative"
+        },
+        "y2": {"field": "__1__"},
+        "opacity": {
+          "condition": [
+            {
+              "test": "datum.diff <= 0",
+              "value": 1
+            }
+          ],
+          "value": 0
+        }
+      }
+    },
+    {
+      "description": "Up arrow at the end, only shows when difference is positive",
+      "transform": [
+        {
+          "filter": "datum.row === datum.LastRow"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "shape": "triangle-up",
+        "size": 75,
+        "fill": {
+          "expr": "positiveColor"
+        },
+        "stroke": {
+          "expr": "positiveColor"
+        },
+        "opacity": 1,
+        "xOffset": {
+          "expr": "bandwidth('x')/1.5"
+        },
+        "yOffset": 5
+      },
+      "encoding": {
+        "y": {
+          "field": "__1__",
+          "type": "quantitative"
+        },
+        "opacity": {
+          "condition": [
+            {
+              "test": "datum.diff > 0",
+              "value": 1
+            }
+          ],
+          "value": 0
+        }
+      }
+    },
+    {
+      "description": "Label for the difference in numbers at the end",
+      "transform": [
+        {
+          "filter": "datum.row === datum.LastRow"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "xOffset": {
+          "expr": "bandwidth('x')/1.3"
+        },
+        "dy": -8
+      },
+      "encoding": {
+        "y": {
+          "field": "CenterDiff",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "diffLabel",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "description": "Label for the difference in percentage at the end",
+      "transform": [
+        {
+          "filter": "datum.row === datum.LastRow"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "xOffset": {
+          "expr": "bandwidth('x')/1.3"
+        },
+        "dy": 8
+      },
+      "encoding": {
+        "y": {
+          "field": "CenterDiff",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "diffPctLabel",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "description": "Ruler between the waterfall bars",
+      "mark": {
+        "type": "rule",
+        "color": "#c0c0c0",
+        "opacity": 1,
+        "strokeWidth": 1,
+        "xOffset": {
+          "expr": "(bandwidth('x')/2*bndWidth)*-1"
+        },
+        "x2Offset": {
+          "expr": "(bandwidth('x')/2*bndWidth)"
+        }
+      },
+      "encoding": {
+        "x2": {"field": "lead"},
+        "y": {
+          "field": "RollingTotal",
+          "type": "quantitative"
+        }
+      }
+    }
+  ]
+}
