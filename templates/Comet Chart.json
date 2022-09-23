@@ -1,0 +1,182 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.4.0.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.4.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "Comet Chart",
+      "description": "This template makes a comet chart that compare values between two years across a single dimension. ",
+      "author": "Meagan Longoria",
+      "uuid": "61bc4a27-9518-47e0-9d30-03d4f01c1153",
+      "generated": "2022-09-23T16:44:03.907Z",
+      "previewImageBase64PNG": "data:image/png;base64,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"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Entity",
+        "description": "The category shown along the left (determines number of comets in the chart)",
+        "type": "text",
+        "kind": "column"
+      },
+      {
+        "key": "__1__",
+        "name": "Time",
+        "description": "Start and end time for the comet (if you have more than 2 values, you'll want to add a visual-level filter so the comet has the correct shape)",
+        "type": "numeric",
+        "kind": "column"
+      },
+      {
+        "key": "__2__",
+        "name": "Measure",
+        "description": "The measure that should be used in the comet",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__3__",
+        "name": "Delta",
+        "description": "The difference between the start and end values",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__4__",
+        "name": "Delta Sign",
+        "description": "The sign (positive/negative) of the delta value",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__5__",
+        "name": "Size",
+        "description": "A DAX measure that defines the size of the comet head and tail. ",
+        "type": "numeric",
+        "kind": "measure"
+      }
+    ]
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "font": "Segoe UI",
+    "arc": {},
+    "area": {
+      "line": true,
+      "opacity": 0.6
+    },
+    "bar": {},
+    "line": {
+      "strokeWidth": 3,
+      "strokeCap": "round",
+      "strokeJoin": "round"
+    },
+    "path": {},
+    "point": {
+      "filled": true,
+      "size": 75
+    },
+    "rect": {},
+    "shape": {},
+    "symbol": {
+      "strokeWidth": 1.5,
+      "size": 50
+    },
+    "text": {
+      "font": "Segoe UI",
+      "fontSize": 12,
+      "fill": "#464543"
+    },
+    "axis": {
+      "ticks": false,
+      "grid": false,
+      "domain": false,
+      "labelColor": "#464543",
+      "labelFontSize": 14,
+      "titleFont": "Segoe UI",
+      "titleColor": "#464543",
+      "titleFontSize": 12,
+      "titleFontWeight": "normal"
+    },
+    "axisQuantitative": {
+      "tickCount": 3,
+      "grid": true,
+      "gridColor": "#888583",
+      "gridDash": [1, 5],
+      "labelFlush": false
+    },
+    "axisX": {"labelPadding": 5},
+    "axisY": {"labelPadding": 10},
+    "header": {
+      "titleFont": "Segoe UI",
+      "titleFontSize": 16,
+      "titleColor": "#464543",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 13.333333333333332,
+      "labelColor": "#464543"
+    },
+    "legend": {
+      "titleFont": "Segoe UI",
+      "titleFontWeight": "bold",
+      "titleColor": "#605E5C",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 13.333333333333332,
+      "labelColor": "#464543",
+      "symbolType": "circle",
+      "symbolSize": 75
+    }
+  },
+  "data": {"name": "dataset"},
+  "height": 40,
+  "width": 350,
+  "mark": {
+    "type": "trail",
+    "tooltip": true
+  },
+  "encoding": {
+    "facet": {
+      "field": "__0__",
+      "title": null,
+      "type": "nominal",
+      "columns": 1,
+      "spacing": 1,
+      "align": "all",
+      "center": false,
+      "header": {
+        "labelAlign": "left",
+        "labelAnchor": "middle",
+        "labelOrient": "left",
+        "labelBaseline": "top",
+        "labelAngle": 0
+      }
+    },
+    "x": {
+      "field": "__2__",
+      "type": "quantitative",
+      "title": "Percent of People Living Alone"
+    },
+    "size": {
+      "field": "__5__",
+      "type": "quantitative",
+      "scale": {"range": [1, 8]},
+      "legend": false
+    },
+    "color": {
+      "field": "__4__",
+      "type": "quantitative",
+      "scale": {"domainMid": 0},
+      "title": "Change In Pct",
+      "legend": false
+    }
+  }
+}
