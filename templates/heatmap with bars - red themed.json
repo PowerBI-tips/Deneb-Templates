@@ -1,0 +1,181 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.4.0.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.4.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "highlight": true,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "heatmap with bars - themed",
+      "description": "Heatmap, uses the 5th theme color as bar chart, 8th color for font, and sentiment colors for gradient",
+      "author": "Injae Park",
+      "uuid": "2b016cda-dfd2-403c-9e1d-754d152b16b4",
+      "generated": "2022-10-17T08:58:21.724Z"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Y-Axis",
+        "description": "",
+        "type": "text",
+        "kind": "column"
+      },
+      {
+        "key": "__1__",
+        "name": "X-Axis",
+        "description": "",
+        "type": "text",
+        "kind": "column"
+      },
+      {
+        "key": "__2__",
+        "name": "KPI",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      }
+    ]
+  },
+  "config": {
+    "autosize": {
+      "type": "fit",
+      "contains": "padding"
+    },
+    "view": {"stroke": "transparent"}
+  },
+  "data": {"name": "dataset"},
+  "spacing": 15,
+  "bounds": "flush",
+  "vconcat": [
+    {
+      "height": 60,
+      "mark": {
+        "type": "bar",
+        "stroke": null,
+        "cornerRadiusEnd": 4,
+        "tooltip": true,
+        "color": {"expr": "pbiColor(4)"}
+      },
+      "encoding": {
+        "x": {
+          "field": "__1__",
+          "axis": null
+        },
+        "y": {
+          "field": "__2__",
+          "aggregate": "mean",
+          "axis": null
+        }
+      }
+    },
+    {
+      "spacing": 15,
+      "bounds": "flush",
+      "hconcat": [
+        {
+          "mark": {
+            "type": "rect",
+            "stroke": "white",
+            "tooltip": true,
+            "cornerRadius": 6
+          },
+          "encoding": {
+            "y": {
+              "field": "__0__",
+              "type": "ordinal",
+              "title": "",
+              "sort": [
+                "Mon",
+                "tue",
+                "wed",
+                "thu",
+                "fri",
+                "sat",
+                "sun"
+              ],
+              "axis": {
+                "domain": false,
+                "ticks": false,
+                "labels": true,
+                "labelAngle": 0,
+                "labelPadding": 5,
+                "labelColor": {
+                  "expr": "pbiColor(7)"
+                }
+              }
+            },
+            "x": {
+              "field": "__1__",
+              "type": "ordinal",
+              "title": "Time",
+              "axis": {
+                "domain": false,
+                "ticks": false,
+                "labels": true,
+                "labelAngle": 0,
+                "labelColor": {
+                  "expr": "pbiColor(7)"
+                },
+                "titleColor": {
+                  "expr": "pbiColor(7)"
+                }
+              }
+            },
+            "color": {
+              "aggregate": "mean",
+              "field": "__2__",
+              "type": "quantitative",
+              "title": "Orders",
+              "scale": {
+                "scheme": "pbiColorLinear"
+              },
+              "legend": {
+                "direction": "vertical",
+                "titleColor": {
+                  "expr": "pbiColor(7)"
+                },
+                "labelColor": {
+                  "expr": "pbiColor(7)"
+                },
+                "gradientLength": 120
+              }
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "bar",
+            "stroke": null,
+            "cornerRadiusEnd": 4,
+            "tooltip": true,
+            "color": {
+              "expr": "pbiColor(4)"
+            }
+          },
+          "width": 60,
+          "encoding": {
+            "y": {
+              "field": "__0__",
+              "axis": null
+            },
+            "x": {
+              "field": "__2__",
+              "type": "quantitative",
+              "aggregate": "mean",
+              "axis": null
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
