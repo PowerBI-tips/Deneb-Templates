@@ -10,29 +10,29 @@
     "interactivity": {
       "tooltip": true,
       "contextMenu": true,
-      "selection": false,
+      "selection": true,
       "highlight": true,
       "dataPointLimit": 50
     },
     "information": {
       "name": "heatmap with bars - themed",
-      "description": "Heatmap, uses the 5th theme color as bar chart, 8th color for font, and sentiment colors for gradient",
+      "description": "Heatmap, uses the 5th theme color as bar chart, 8th color for font, and sentiment colors for gradient. X and Y axis are using Date table from Bravo, and are sorted for X= Month, Y = Day of Week. If you are using a different ordinal column, please make sure the columns are properly sorted",
       "author": "Injae Park",
-      "uuid": "2b016cda-dfd2-403c-9e1d-754d152b16b4",
-      "generated": "2022-10-17T08:58:21.724Z"
+      "uuid": "57ee5f3a-4a51-4230-8885-7db391a05805",
+      "generated": "2022-10-19T11:12:58.962Z"
     },
     "dataset": [
       {
         "key": "__0__",
-        "name": "Y-Axis",
-        "description": "",
+        "name": "Day of Week",
+        "description": "From Bravo, is 3 character abbreviation, i.e. Mon, Tue, Wed",
         "type": "text",
         "kind": "column"
       },
       {
         "key": "__1__",
-        "name": "X-Axis",
-        "description": "",
+        "name": "Month",
+        "description": "From Bravo, is 3 character abbreviation, i.e. Jan, Feb, Mar",
         "type": "text",
         "kind": "column"
       },
@@ -68,6 +68,20 @@
       "encoding": {
         "x": {
           "field": "__1__",
+          "sort": [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"
+          ],
           "axis": null
         },
         "y": {
@@ -94,7 +108,7 @@
               "type": "ordinal",
               "title": "",
               "sort": [
-                "Mon",
+                "mon",
                 "tue",
                 "wed",
                 "thu",
@@ -117,6 +131,20 @@
               "field": "__1__",
               "type": "ordinal",
               "title": "Time",
+              "sort": [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec"
+              ],
               "axis": {
                 "domain": false,
                 "ticks": false,
@@ -146,7 +174,7 @@
                 "labelColor": {
                   "expr": "pbiColor(7)"
                 },
-                "gradientLength": 120
+                "gradientLength": 100
               }
             }
           }
@@ -165,7 +193,16 @@
           "encoding": {
             "y": {
               "field": "__0__",
-              "axis": null
+              "axis": null,
+              "sort": [
+                "mon",
+                "tue",
+                "wed",
+                "thu",
+                "fri",
+                "sat",
+                "sun"
+              ]
             },
             "x": {
               "field": "__2__",
