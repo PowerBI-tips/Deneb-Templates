@@ -1,0 +1,290 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.4.0.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.4.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": true,
+      "highlight": true,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "Actual_vs_Budget_v2",
+      "description": "Actual vs Budget IBCS style",
+      "author": "PBIQueryous",
+      "uuid": "98207df6-f128-4407-97ba-c887b616a1ab",
+      "generated": "2022-10-21T20:00:14.347Z",
+      "previewImageBase64PNG": "data:image/png;base64,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"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Dates",
+        "description": "Dates or Month-Year field",
+        "type": "text",
+        "kind": "column"
+      },
+      {
+        "key": "__1__",
+        "name": "isMonthComplete",
+        "description": "Must be true/false",
+        "type": "bool",
+        "kind": "column"
+      },
+      {
+        "key": "__2__",
+        "name": "Sales",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__3__",
+        "name": "Budget",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__4__",
+        "name": "Forecast",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      }
+    ]
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "font": "Segoe UI",
+    "axis": {
+      "title": "",
+      "grid": false,
+      "domainWidth": 2,
+      "domainColor": "black",
+      "labelAngle": 0,
+      "labelFontSize": 12
+    },
+    "axisY": {"disable": true},
+    "style": {
+      "barActual": {"color": "#404040"},
+      "barBudget": {"color": "#505050"},
+      "barUnselected": {
+        "color": "lightGrey"
+      },
+      "barDelta1": {
+        "color": "steelblue"
+      }
+    }
+  },
+  "data": {"name": "dataset"},
+  "params": [
+    {"name": "bwActual", "value": 0.9},
+    {"name": "bwBudget", "value": 0.6}
+  ],
+  "description": "encodeActualBarMark",
+  "transform": [
+    {
+      "calculate": "datum['__2__'] >= datum['__3__']",
+      "as": "Pos"
+    },
+    {
+      "calculate": "datum.Pos ? '#83C798' : '#8D1D1C'",
+      "as": "DeltaColour"
+    },
+    {
+      "calculate": "datum.Pos ? 0 : 11",
+      "as": "newDeltaPos"
+    },
+    {
+      "calculate": "datum.Pos ? 'bottom' : 'top'",
+      "as": "ActualLabel"
+    },
+    {
+      "calculate": "datum.Pos ? 'black' : 'white'",
+      "as": "LabelColour"
+    },
+    {
+      "description": "LabelTextPadding",
+      "calculate": "datum.Pos ? -2 : 3",
+      "as": "LabelPad"
+    },
+    {
+      "description": "DeltaTextPadding",
+      "calculate": "datum.Pos ? -3 : 3",
+      "as": "DeltaPad"
+    },
+    {
+      "calculate": "round(datum['__2__'] - datum['__3__'])",
+      "as": "DeltaText"
+    },
+    {
+      "calculate": "!datum.Pos ? 'bottom' : 'top'",
+      "as": "deltaTextBaseline"
+    },
+    {
+      "calculate": "!datum.Pos ? 'black' : 'white'",
+      "as": "deltaTextColour"
+    },
+    {
+      "calculate": "!datum.Pos ? -2 : 3",
+      "as": "deltaTextOffset"
+    }
+  ],
+  "layer": [
+    {
+      "transform": [
+        {"filter": "datum['__1__']==1"}
+      ],
+      "description": "ActualBar",
+      "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "width": {
+          "expr": "bandwidth('x') * bwActual"
+        },
+        "style": "barActual"
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum['__1__']==0"}
+      ],
+      "description": "ActualBar2",
+      "mark": {
+        "type": "bar",
+        "fill": {
+          "expr": "pbiPatternSVG('diagonal-stripe-3', 'grey', 'black')"
+        },
+        "stroke": "black",
+        "tooltip": true,
+        "width": {
+          "expr": "bandwidth('x') * bwActual"
+        },
+        "style": "barBudget"
+      }
+    },
+    {
+      "description": "encodeDelta",
+      "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "width": {
+          "expr": "bandwidth('x') * bwBudget"
+        },
+        "xOffset": {
+          "expr": "(bandwidth('x') * (bwActual - bwBudget))/2"
+        },
+        "color": {
+          "expr": "datum.DeltaColour"
+        }
+      },
+      "encoding": {
+        "y2": {"field": "__3__"}
+      }
+    },
+    {
+      "description": "ActualLabel",
+      "mark": {
+        "type": "text",
+        "baseline": {
+          "expr": "datum.ActualLabel"
+        },
+        "color": {
+          "expr": "datum.LabelColour"
+        },
+        "font": "arial black",
+        "fontSize": 8,
+        "yOffset": {
+          "expr": "datum.LabelPad"
+        }
+      },
+      "encoding": {
+        "text": {
+          "field": "__2__",
+          "format": "#,0,.",
+          "formatType": "pbiFormat"
+        }
+      }
+    },
+    {
+      "description": "DeltaLabel",
+      "mark": {
+        "type": "text",
+        "baseline": {
+          "expr": "datum.deltaTextBaseline"
+        },
+        "color": {
+          "expr": "datum.DeltaColour"
+        },
+        "font": "arial black",
+        "fontSize": 8,
+        "yOffset": {
+          "expr": "datum.deltaTextOffset"
+        },
+        "xOffset": {
+          "expr": "datum.newDeltaPos"
+        }
+      },
+      "encoding": {
+        "y": {"field": "__3__"},
+        "text": {
+          "field": "DeltaText",
+          "format": "+#,##0,.;-#,##0,.",
+          "formatType": "pbiFormat"
+        }
+      }
+    }
+  ],
+  "encoding": {
+    "tooltip": [
+      {"field": "__0__"},
+      {
+        "field": "__2__",
+        "title": "AC",
+        "format": "£#,##0",
+        "formatType": "pbiFormat"
+      },
+      {
+        "field": "__3__",
+        "title": "PL",
+        "format": "£#,##0",
+        "formatType": "pbiFormat"
+      },
+      {
+        "field": "DeltaText",
+        "title": "ΔDiff",
+        "format": "£#,##0",
+        "formatType": "pbiFormat"
+      }
+    ],
+    "x": {
+      "field": "__0__",
+      "type": "nominal",
+      "axis": {
+        "labelExpr": "pbiFormat(datum['value'], 'MMM')"
+      },
+      "sort": null
+    },
+    "y": {
+      "field": "__2__",
+      "type": "quantitative"
+    },
+    "opacity": {
+      "condition": {
+        "test": {
+          "field": "__selected__",
+          "equal": "off"
+        },
+        "value": 0.3
+      },
+      "value": 1
+    }
+  }
+}
